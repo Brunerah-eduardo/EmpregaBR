@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>EmpregaBR</title>
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <a href="cliente"> EmpregaBR</a>
+            
+            <nav id="menu">
+                <ul style="display: flex; margin:0 auto">
+                    <li><a href="empresa">Home</a></li>
+                    <li><a href="empresa/usuario">Analistas</a></li>
+                <li><a href="logout">Logout</a></li>
+                </ul>
+            </nav>
+            
+        </header>
+        
+        <article>
+            <?php $this->controller->renderView(); ?>
+        </article>
+
+        <footer>
+            <p>EmpregaBR - Recrutamento e Seleção</p>
+        </footer>
+    </body>
+</html>
+

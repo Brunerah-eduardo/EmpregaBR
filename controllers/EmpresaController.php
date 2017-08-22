@@ -1,34 +1,24 @@
 <?php
-
-    class RouterController extends Controller{
+    class EmpresaController extends Controller{
         protected $controller;
 
         public function process($params){
             $parsedUrl = $this->parseUrl($params[0]);
             if(empty($parsedUrl[0]))
-                $this->redirect('login');
+                $this->redirect('empresa/dashboard');
                 
             $controllerClass = $this->dashesToCamel(array_shift($parsedUrl)).'Controller';
 
             if(file_exists("controllers/$controllerClass.php"))
                 $this->controller = new $controllerClass;
             else
-                if(LogReg::isLogged()){
-                    if($_SESSION['level'] == 1){
-                        $this->redirect("cliente/error");
-                    }else{
-                        $this->redirect("empresa/error");
-                    }
-                }else{
-                    $this->redirect('error');
-                }
+                $this->redirect('empresa/error');
 
             $this->controller->process($parsedUrl);
 
-            $this->data['title'] = $this->controller->head['title'];
-            $this->data['desc'] = $this->controller->head['desc'];
-
-            $this->view = 'layoutAuth';
+            $this->head['title'] = $this->controller->head['title'];
+            $this->head['desc'] = $this->controller->head['desc'];
+            $this->view = 'layoutEmpresa';
         }
 
         private function parseUrl($url){
@@ -46,3 +36,4 @@
             return $text = str_replace(' ', '', $text);
         }
     }
+?>
