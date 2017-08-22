@@ -7,7 +7,11 @@
                 $result = Db::queryOne("SELECT Id_user FROM user WHERE login = ?", array($login));
                 if(count($result) > 0){
                     Db::queryCount("INSERT INTO level(FK_Id_user, level) VALUES(?,?)", array($result['Id_user'], $level));
-                    $this->userLogin($login, $senha);
+                    if(!($level == 3))
+                        $this->userLogin($login, $senha);
+                    else
+                        $_SESSION['Id_user_analista'] = $result['Id_user'];
+                    
                 }else{
                     return false;
                 }
@@ -18,6 +22,7 @@
         
        public function analistaRegister($login, $senha, $level){
            $this->userRegister($login, $senha, $level);
+           return Db::queryCount("INSERT INTO analista(FK_Id_user, FK_Id_empresa) VALUES(?,?)", array($_SESSION['Id_user_analista'], $_SESSION['Id_user']));
        }
        
        public function empresaRegister($login, $senha, $level){
