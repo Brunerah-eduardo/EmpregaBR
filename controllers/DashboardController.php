@@ -3,7 +3,12 @@
         public function process($params){
             $this->head['title'] = 'Dash';
             $this->head['desc'] = '';
-            $this->view = 'cliente/dashboard';
+            if($_SESSION['level'] == 1){
+                $this->view = 'cliente/dashboard';
+            }else{
+                $this->view = 'empresa/dashboard';
+            }
+            
         }
     }
 ?>

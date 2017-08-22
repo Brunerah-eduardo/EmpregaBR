@@ -16,20 +16,33 @@
 
         public static function queryOne($query, $params = array()){
             $result = self::$conn->prepare($query);
-            $result->execute($params);
-            return $result->fetch();
+            try {
+                $result->execute($params);
+                return $result->fetch();
+            } catch (PDOException $ex) {
+                
+            }
+            
         }
 
          public static function queryAll($query, $params = array()){
              $result = self::$conn->prepare($query);
-             $result->execute($params);
-             return $result->fetchAll(PDO::FETCH_COLUMN, 0);
+             try {
+                $result->execute($params);
+                return $result->fetchAll(PDO::FETCH_COLUMN, 0);
+             } catch (PDOException $ex) {
+                 
+             }
+             
          }
 
          public static function queryCount($query, $params = array()){
              $result = self::$conn->prepare($query);
-             $result->execute($params);
-             return $result->rowCount();
+             try {
+                $result->execute($params);
+                return $result->rowCount();
+             } catch (PDOException $ex) {
+             }
          }
     }
 

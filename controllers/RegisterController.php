@@ -4,19 +4,24 @@
         public function process($params){
 
             if(LogReg::isLogged()){
-                $this->redirect("cliente");
+                if($_SESSION['level'] == 1){
+                    $this->redirect("cliente");
+                }else{
+                    $this->redirect("empresa");
+                }
+                
             }
             
             $this->data['error'] = "";
 
             if(isset($_POST['login']) && isset($_POST['senha']) && isset($_POST['level'])){
                 $regObj = new LogReg();
-                $result = $regObj->userRegister($_POST['login'], $_POST['senha'],$_POST['level']);
+                $result = $regObj->clienteRegister($_POST['login'], $_POST['senha'],$_POST['level']);
 
-                if(!($result >0))
+                if(!($result > 0))
                     $this->data['error'] = "Deu algum erro ao se registrar";
                 else
-                    $this->data['error'] = "Você foi registrado com sucesso";
+                    $this->redirect ('login');
             }
 
             $this->head['title'] = 'Register';

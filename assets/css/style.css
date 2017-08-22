@@ -40,6 +40,10 @@ header a:hover{
     color: #eee;
 }
 
+footer p{
+    text-align: center;
+}
+
 .login-container{
     width: 520px;
     height: 300px;

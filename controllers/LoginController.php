@@ -3,7 +3,12 @@
 
         public function process($params){
             if(LogReg::isLogged()){
-                $this->redirect("cliente");
+                if($_SESSION['level'] == 1){
+                    $this->redirect("cliente");
+                }else{
+                    $this->redirect("empresa");
+                }
+                
             }
             
             $this->data['error'] = "";
@@ -13,7 +18,12 @@
                 $login = $logObj->userLogin($_POST['login'],$_POST['senha']);
 
                 if($login == true){
-                    $this->redirect("cliente");
+                    if($_SESSION['level'] == 1){
+                        $this->redirect("cliente");
+                    }else{
+                        $this->redirect("empresa");
+                    }
+                    
                 }else{
                     $this->data['error'] = "Error";
                 }
