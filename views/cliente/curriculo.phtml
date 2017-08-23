@@ -1,6 +1,63 @@
 <?php
+echo "<h4>Dados Pessoais:</h4>";
+print_r($dadoPessoal);
+?>
+<form method="POST" id="form-register">
+    <h1>Dados Pessoais</h1>
+    <input type="text" name="nome" required placeholder="Nome... ">
+    <input type="text" name="cpf" required placeholder="CPF... "><br>
+    <input type="text" name="email" required placeholder="Email... "><br>
+    <input type="submit" value="Salvar">
+    <div class="error"><?= $error ?></div>
+</form>
 
-echo "<h4>Áreas de Interesse:</h4>";
-foreach($result as $ai){
-    echo $ai."<br>";
-}
+<?php
+echo "<h4>Conhecimentos:</h4>";
+print_r($conhecimento);
+?>
+<form method="POST" id="form-register">
+    <h1>Conhecimentos</h1>
+    <input type="text" name="conhecimento" required placeholder="Conhecimentos... ">
+    <input type="submit" value="Salvar">
+    <div class="error"><?= $error ?></div>
+</form>
+
+<?php
+echo "<h4>Dados Complementares:</h4>";
+print_r($dadoComplementar);
+?>
+<form method="POST" id="form-register">
+    <h1>Dados Complementares</h1>
+    <input type="text" name="tphabilitacao" required placeholder="Tipo Habilitação... "><br>
+    <input type="text" name="numerocnh" required placeholder="Número CNH... "><br>
+    <input type="text" name="carteiraTrabalho" required placeholder="Carteira de Trabalho... "><br>
+    <input type="text" name="carteiraMilitar" required placeholder="Carteira Militar... "><br>
+    <input type="submit" value="Salvar">
+    <div class="error"><?= $error ?></div>
+</form>
+
+<?php
+echo "<h4>Dados Profissionais:</h4>";
+print_r($dadoProfissional);
+?>
+<form method="POST" id="form-register">
+    <h1>Dados Profissionais</h1>
+    <input type="text" name="resumoprofissional" required placeholder="Resumo Profissional... "><br>
+    <input type="text" name="objetivoprofissional" required placeholder="Objetivo Profissional... "><br>
+    <input type="submit" value="Salvar">
+    <div class="error"><?= $error ?></div>
+</form>
+
+<?php
+echo "<h4>Experiências Profissionais:</h4>";
+print_r($experiencia);
+?>
+<form method="POST" id="form-register">
+    <h1>Experiência Profissional</h1>
+    <input type="text" name="empresa" required placeholder="Empresa... "><br>
+    <input type="text" name="cargo" required placeholder="Cargo... "><br>
+    <input type="submit" value="Salvar">
+    <div class="error"><?= $error ?></div>
+</form>
+
+
