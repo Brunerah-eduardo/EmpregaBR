@@ -18,6 +18,19 @@
             $candidatoExperiencia = new CandidatoExperiencia();
             $experiencia = $candidatoExperiencia->buscaDados($_SESSION['Id_user']);
             
+            $candidatoFormacao = new CandidatoFormacao();
+            $formacao = $candidatoFormacao->buscaDados($_SESSION['Id_user']);
+            
+            $candidatoAreaInteresse = new CandidatoAreaInteresse();
+            $areaInteresse = $candidatoAreaInteresse->buscaDados($_SESSION['Id_user']);
+                        
+            $candidatoIdioma = new CandidatoIdioma();
+            $idioma = $candidatoIdioma->buscaDados($_SESSION['Id_user']);
+            
+            $candidatoRedeSocial = new CandidatoRedeSocial();
+            $redeSocial = $candidatoRedeSocial->buscaDados($_SESSION['Id_user']);
+            
+            
             $this->data['error'] = '';
             
             if(isset($_POST['nome']) && isset($_POST['cpf'])&& isset($_POST['email'])){
@@ -70,8 +83,47 @@
                 $this->redirect('cliente/curriculo');
             }
             
-            /*$areainteresse = new AreaInteresse();
-            $result = $areainteresse->buscaDados($_SESSION['Id_user']);*/
+            if(isset($_POST['curso']) && isset($_POST['instituicao'])&& isset($_POST['situacao']) && isset($_POST['dataInicio']) && isset($_POST['dataFim'])){
+                $dados = array($_SESSION['Id_candidato'], $_POST['curso'], $_POST['instituicao'], $_POST['situacao'], $_POST['dataInicio'], $_POST['dataFim']);
+                $InsertFormacao= $candidatoFormacao->inserirDados($dados);
+                if(!count($InsertFormacao)>0)
+                    $this->data['error'] = 'Não foi possível inserir seus dados no momento...';
+                else
+                    $this->data['error'] = 'Registro Inserido com Sucesso...';
+                $this->redirect('cliente/curriculo');
+            }
+            
+            if(isset($_POST['areaInteresse'])){
+                $dados = array($_SESSION['Id_candidato'], $_POST['areaInteresse']);
+                $InsertAreaInteresse = $candidatoAreaInteresse->inserirDados($dados);
+                if(!count($InsertAreaInteresse)>0)
+                    $this->data['error'] = 'Não foi possível inserir seus dados no momento...';
+                else
+                    $this->data['error'] = 'Registro Inserido com Sucesso...';
+                $this->redirect('cliente/curriculo');
+            }
+            
+            if(isset($_POST['idioma']) && isset($_POST['nivel'])){
+                $dados = array($_SESSION['Id_candidato'], $_POST['idioma'], $_POST['nivel']);
+                $InsertIdioma = $candidatoIdioma->inserirDados($dados);
+                if(!count($InsertIdioma)>0)
+                    $this->data['error'] = 'Não foi possível inserir seus dados no momento...';
+                else
+                    $this->data['error'] = 'Registro Inserido com Sucesso...';
+                $this->redirect('cliente/curriculo');
+            }
+            
+            if(isset($_POST['redesocial']) && isset($_POST['link_redesocial'])){
+                $dados = array($_SESSION['Id_candidato'], $_POST['redesocial'], $_POST['link_redesocial']);
+                $InsertRedeSocial = $candidatoRedeSocial->inserirDados($dados);
+                if(!count($InsertRedeSocial)>0)
+                    $this->data['error'] = 'Não foi possível inserir seus dados no momento...';
+                else
+                    $this->data['error'] = 'Registro Inserido com Sucesso...';
+                $this->redirect('cliente/curriculo');
+            }
+            
+            
 
             $this->head['title'] = 'Curriculos';
             $this->head['desc'] = '';
@@ -80,6 +132,10 @@
             $this->data['dadoComplementar'] = $dadocomplementar;
             $this->data['dadoProfissional'] = $dadoprofissional;
             $this->data['experiencia'] = $experiencia;
+            $this->data['formacao'] = $formacao;
+            $this->data['areaInteresse'] = $areaInteresse;
+            $this->data['idioma'] = $idioma;
+            $this->data['redeSocial'] = $redeSocial;
             
             $this->view = 'cliente/curriculo';
         }

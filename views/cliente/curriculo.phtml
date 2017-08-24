@@ -60,4 +60,55 @@ print_r($experiencia);
     <div class="error"><?= $error ?></div>
 </form>
 
+<?php
+echo "<h4>Formação Acadêmica:</h4>";
+print_r($formacao);
+?>
+<form method="POST" id="form-register">
+    <h1>Formação Acadêmica</h1>
+    <input type="text" name="curso" required placeholder="Curso... "><br>
+    <input type="text" name="instituicao" required placeholder="Instituição de Ensino... "><br>
+    <input type="text" name="situacao" required placeholder="Situação... "><br>
+    <input type="date" name="dataInicio" required placeholder="Data de Início... "><br>
+    <input type="date" name="dataFim" required placeholder="Data de Finalização... "><br>
+    <input type="submit" value="Salvar">
+    <div class="error"><?= $error ?></div>
+</form>
+
+<?php
+echo "<h4>Área de Interesse:</h4>";
+print_r($areaInteresse);
+?>
+<form method="POST" id="form-register">
+    <h1>Áreas de Interesse</h1>
+    <input type="text" name="areaInteresse" required placeholder="Área de Interesse... "><br>
+    <input type="submit" value="Salvar">
+    <div class="error"><?= $error ?></div>
+</form>
+
+<?php
+echo "<h4>Idiomas:</h4>";
+print_r($idioma);
+?>
+<form method="POST" id="form-register">
+    <h1>Idiomas</h1>
+    <input type="text" name="idioma" required placeholder="Idioma... "><br>
+    <input type="text" name="nivel" required placeholder="Nível... "><br>
+    <input type="submit" value="Salvar">
+    <div class="error"><?= $error ?></div>
+</form>
+
+<?php
+echo "<h4>Redes Sociais:</h4>";
+print_r($redeSocial);
+?>
+<form method="POST" id="form-register">
+    <h1>Redes Sociais</h1>
+    <input type="text" name="redesocial" required placeholder="Rede Social... "><br>
+    <input type="text" name="link_redesocial" required placeholder="Link de Acesso... "><br>
+    <input type="submit" value="Salvar">
+    <div class="error"><?= $error ?></div>
+</form>
+
+
 
