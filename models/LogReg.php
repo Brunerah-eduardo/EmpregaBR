@@ -7,7 +7,11 @@
                 $result = Db::queryOne("SELECT Id_user FROM user WHERE login = ?", array($login));
                 if(count($result) > 0){
                     Db::queryCount("INSERT INTO level(FK_Id_user, level) VALUES(?,?)", array($result['Id_user'], $level));
-                    $this->userLogin($login, $senha);
+                    if(!($level == 3))
+                        $this->userLogin($login, $senha);
+                    else
+                        return $analista = $result['Id_user'];
+                    
                 }else{
                     return false;
                 }
@@ -17,11 +21,13 @@
         }
         
        public function analistaRegister($login, $senha, $level){
-           $this->userRegister($login, $senha, $level);
+           $analista = $this->userRegister($login, $senha, $level);
+           return Db::queryCount("INSERT INTO analista(FK_Id_user, FK_Id_empresa) VALUES(?,?)", array($analista, $_SESSION['Id_empresa']));
        }
        
        public function empresaRegister($login, $senha, $level){
            $this->userRegister($login, $senha, $level);
+           return Db::queryCount("INSERT INTO empresa(confirmado, FK_Id_user) VALUES(?,?)", array(1, $_SESSION['Id_user']));
        }
        
        public function clienteRegister($login, $senha, $level){
@@ -35,6 +41,15 @@
             $result = Db::queryOne("SELECT u.*, l.level FROM user u 
                     INNER JOIN level l ON u.Id_user = l.FK_Id_user WHERE u.login = ?", array($login));
             if(count($result) > 0 && ($senha == $result['senha'])){
+                if($result['level'] == 1){
+                    $candidato = Db::queryOne ("SELECT c.Id_candidato FROM candidato c
+                            INNER JOIN user u ON c.FK_Id_user = u.Id_user WHERE u.Id_user = ?", array($result['Id_user']));
+                    $_SESSION['Id_candidato'] = $candidato['Id_candidato'];
+                }else if($result['level'] == 2){
+                    $empresa = Db::queryOne ("SELECT e.Id_empresa FROM empresa e
+                            INNER JOIN user u ON e.FK_Id_user = u.Id_user WHERE u.Id_user = ?", array($result['Id_user']));
+                    $_SESSION['Id_empresa'] = $empresa['Id_empresa'];    
+                }
                 $_SESSION['Id_user'] = $result['Id_user'];
                 $_SESSION['level'] = $result['level'];
                 return $resultado = true;

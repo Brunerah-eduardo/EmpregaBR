@@ -18,7 +18,7 @@
             $result = self::$conn->prepare($query);
             try {
                 $result->execute($params);
-                return $result->fetch();
+                return $result->fetch(PDO::FETCH_ASSOC);
             } catch (PDOException $ex) {
                 
             }
@@ -29,7 +29,7 @@
              $result = self::$conn->prepare($query);
              try {
                 $result->execute($params);
-                return $result->fetchAll(PDO::FETCH_COLUMN, 0);
+                return $result->fetchAll(PDO::FETCH_ASSOC);
              } catch (PDOException $ex) {
                  
              }

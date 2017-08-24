@@ -1,1 +1,10 @@
-Usuarios
+<?php
+    echo $_SESSION['Id_empresa'];
+?>
+<form method="POST" id="form-register">
+    <h1>Registrar Analista</h1>
+    <input type="text" name="login" required placeholder="Login: ">
+    <input type="password" name="senha" required placeholder="Senha: "><br>
+    <input type="submit" value="Registrar">
+    <div class="error"><?= $error ?></div>
+</form>

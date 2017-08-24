@@ -16,7 +16,11 @@
 
             if(isset($_POST['login']) && isset($_POST['senha']) && isset($_POST['level'])){
                 $regObj = new LogReg();
-                $result = $regObj->clienteRegister($_POST['login'], $_POST['senha'],$_POST['level']);
+                if($_POST['level'] == 1)
+                    $result = $regObj->clienteRegister($_POST['login'], $_POST['senha'],$_POST['level']);
+                else
+                    $result = $regObj->empresaRegister($_POST['login'], $_POST['senha'],$_POST['level']);
+                
 
                 if(!($result > 0))
                     $this->data['error'] = "Deu algum erro ao se registrar";
