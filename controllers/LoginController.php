@@ -10,7 +10,8 @@
                 }
                 
             }
-            
+            $this->head['title'] = 'Login';
+            $this->head['desc'] = 'Login';
             $this->data['error'] = "";
 
             if(isset($_POST['login']) && isset($_POST['senha'])){
@@ -18,20 +19,23 @@
                 $login = $logObj->userLogin($_POST['login'],$_POST['senha']);
 
                 if($login == true){
-                    if($_SESSION['level'] == 1){
-                        $this->redirect("cliente");
+                    if(is_array($login)){
+                        $this->view = 'doubleLogin';
                     }else{
-                        $this->redirect("empresa");
+                        $logObj->userType($_SESSION['Id_user'], (int)$login);
+                        $this->redirect('login');
                     }
-                    
                 }else{
                     $this->data['error'] = "Error";
                 }
+
+            }else if(isset($_POST['loginLevel'])){
+                $logObj = new LogReg;
+                $logObj->userType($_SESSION['Id_user'], $_POST['loginLevel']);
+                $this->redirect("login");
+            }else{
+                $this->view = 'login';
             }
-            
-            $this->head['title'] = 'Login';
-            $this->head['desc'] = 'Login';
-            $this->view = 'login';
         }
         
     }
