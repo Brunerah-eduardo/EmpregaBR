@@ -82,10 +82,13 @@
             }else if($level == 2){
                 $empresa = Db::queryOne ("SELECT e.Id_empresa FROM empresa e
                     INNER JOIN user u ON e.FK_Id_user = u.Id_user WHERE u.Id_user = ?", array($user));
-                $_SESSION['Id_empresa'] = $candidato['Id_empresa'];
+                $_SESSION['Id_empresa'] = $empresa['Id_empresa'];
                 $_SESSION['level'] = $level;
             }else{
-                return false;
+                $analista = Db::queryOne ("SELECT a.Id_analista FROM analista a
+                    INNER JOIN user u ON a.FK_Id_user = u.Id_user WHERE u.Id_user = ?", array($user));
+                $_SESSION['Id_analista'] = $analista['Id_analista'];
+                $_SESSION['level'] = $level;
             }
         }
 

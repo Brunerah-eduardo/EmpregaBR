@@ -5,10 +5,11 @@
             if(LogReg::isLogged()){
                 if($_SESSION['level'] == 1){
                     $this->redirect("cliente");
-                }else{
+                }else if($_SESSION['level'] == 2){
                     $this->redirect("empresa");
+                }else if($_SESSION['level'] == 3){
+                    $this->redirect("analista");
                 }
-                
             }
             $this->head['title'] = 'Login';
             $this->head['desc'] = 'Login';
