@@ -4,24 +4,32 @@
         protected $controller;
 
         public function process($params){
+            echo "level: " . $_SESSION['level'] . "<br>";
+            echo "Id_user: " . $_SESSION['Id_user'] . "<br>";
+            echo "Id_candidato: " . $_SESSION['Id_candidato'] . "<br>";
+            echo "Id_empresa: " . $_SESSION['Id_empresa'] . "<br>";
+            echo "Id_analista: " . $_SESSION['Id_analista'] . "<br>";
             $parsedUrl = $this->parseUrl($params[0]);
             if(empty($parsedUrl[0]))
                 $this->redirect('login');
                 
             $controllerClass = $this->dashesToCamel(array_shift($parsedUrl)).'Controller';
 
-            if(file_exists("controllers/$controllerClass.php"))
+            if(file_exists("controllers/$controllerClass.php")){
                 $this->controller = new $controllerClass;
-            else
+            }else{
                 if(LogReg::isLogged()){
                     if($_SESSION['level'] == 1){
                         $this->redirect("cliente/error");
-                    }else{
+                    }else if($_SESSION['level'] == 2){
                         $this->redirect("empresa/error");
+                    }else if($_SESSION['level'] == 3){
+                        $this->redirect("analista/error");
                     }
                 }else{
                     $this->redirect('error');
                 }
+            }
 
             $this->controller->process($parsedUrl);
 
