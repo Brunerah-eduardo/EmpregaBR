@@ -1,0 +1,37 @@
+Página de Teste da Tela de Agendamentos
+
+<table class="table table-striped table-bordered">
+    </br></br></br>
+    <tr>
+        <td align="center">ID Evento</td>
+        <td align="center">Título</td>
+        <td align="center">Local</td>
+        <td align="center">Data Início</td>
+        <td align="center">Data Término</td>
+        <td align="center">Ações</td>
+    </tr>
+    
+    <?php if ($eventos) {
+        foreach ($eventos as $e){?>
+            <tr>
+                <td align="center"><?= $e['Id_evento']?></td>
+                <td align="center"><?= $e['titulo'] ?></td>
+                <td><?= $e['local'] ?></td>
+                <td align="center"><?= $e['dataInicio'] ?></td>
+                <td align="center"><?= $e['dataFim'] ?></td>
+                <td align="center">
+                    <button class="candidatar btn btn-primary" value="<?= $e['Id_evento'] ?>">
+                        Ver Detalhes
+                    </button>
+                    
+                </td>
+            </tr>
+            <?php
+        }
+    }else {
+        echo "<tr>" . "No momento não há vagas Disponíveis para estas Areas de Interesse" . "</tr>";
+    }?>	
+</table>
+
+<br><br>
+

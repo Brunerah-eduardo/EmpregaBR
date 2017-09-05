@@ -10,4 +10,8 @@ class CandidatoExperiencia{
         return $result = Db::queryCount("INSERT INTO experienciacandidato (id_candidato, empresa, cargo) VALUES (?,?,?)", $params);
     }
     
+    public function atualizarDados($params = array()){
+        return $result = Db::queryCount(" UPDATE experienciacandidato SET empresa=?, cargo=? WHERE id_experienciacandidato=?", $params);
+    }
+    
 }
