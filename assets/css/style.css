@@ -4,6 +4,10 @@
     padding: 0;
 }
 
+tbody{
+    width: 100%;
+}
+
 #cal {
     width: 50%;
     margin-left:25%; 

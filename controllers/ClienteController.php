@@ -3,18 +3,19 @@
         protected $controller;
 
         public function process($params){
-            $parsedUrl = $this->parseUrl($params[0]);
+            $parsedUrl = $this->parseUrl($params[1]);
             if(empty($parsedUrl[0]))
                 $this->redirect('cliente/dashboard');
+            
                 
-            $controllerClass = $this->dashesToCamel(array_shift($parsedUrl)).'Controller';
+            $controllerClass = $this->dashesToCamel($parsedUrl[0]).'Controller';
 
             if(file_exists("controllers/$controllerClass.php"))
                 $this->controller = new $controllerClass;
             else
                 $this->redirect('cliente/error');
 
-            $this->controller->process($parsedUrl);
+            $this->controller->process($params);
 
             $this->head['title'] = $this->controller->head['title'];
             $this->head['desc'] = $this->controller->head['desc'];

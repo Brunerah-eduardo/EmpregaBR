@@ -3,7 +3,7 @@
         protected $controller;
 
         public function process($params){
-            $parsedUrl = $this->parseUrl($params[0]);
+            $parsedUrl = $this->parseUrl($params[1]);
             if(empty($parsedUrl[0]))
                 $this->redirect('empresa/dashboard');
                 
@@ -14,7 +14,7 @@
             else
                 $this->redirect('empresa/error');
 
-            $this->controller->process($parsedUrl);
+            $this->controller->process($params);
 
             $this->head['title'] = $this->controller->head['title'];
             $this->head['desc'] = $this->controller->head['desc'];
