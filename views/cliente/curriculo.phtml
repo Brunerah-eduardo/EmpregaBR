@@ -1,12 +1,9 @@
 <?php
 echo "<h4>Dados Pessoais:</h4>";
-/*foreach($areaInteresse as $coluna){
-    echo $coluna['areaInteresse']."<br>";
-}*/
 ?>
 
-<table class="container">
-    <tr class="container grow-tr"   >
+<table>
+    <tr class="grow-tr"   >
         <td class="grow-td">ID</td>
         <td class="grow-td">Nome</td>
         <td class="grow-td">CPF</td>
@@ -16,15 +13,13 @@ echo "<h4>Dados Pessoais:</h4>";
     
     <?php if (!empty($dadoPessoal)) {
             ?>
-            <tr class="container">
+            <tr>
                 <td class="grow-td"><?= $dadoPessoal['Id_candidato']?></td>
-                <td class="grow-td"><?= $dadoPessoal['nome'] ?></td>
+                <td class="grow-td"><?= $dadoPessoal['nome_completo'] ?></td>
                 <td class="grow-td"><?= $dadoPessoal['cpf'] ?></td>
                 <td class="grow-td"><?= $dadoPessoal['email'] ?></td>
                 <td class="grow-td">
-                    <a class="btn btn-primary" value="<?= $dadoPessoal['Id_candidato'] ?>">
-                        Editar
-                    </a>
+                    <button class="newVaga" id="dadoPessoal" value="<?php $dadoPessoal['Id_candidato'] ?>">Editar Dados Pessoais</button><br><br>
                 </td>
             </tr>
             <?php
@@ -34,21 +29,42 @@ echo "<h4>Dados Pessoais:</h4>";
     //endif;
     ?>	
 </table>
-
-<form method="POST" id="dadoPessoal">
+<form method="POST" id="dadoPessoal" class="container">
     <h1>Dados Pessoais</h1>
-    <input type="text" name="nome" required placeholder="Nome... ">
-    <input type="text" name="cpf" required placeholder="CPF... "><br>
-    <input type="text" name="email" required placeholder="Email... "><br>
+    <input type="text" name="nome" value="<?php echo $dadoPessoal['nome_completo']?>" required placeholder="Nome... ">
+    <input type="text" name="cpf" value="<?php echo $dadoPessoal['cpf']?>" required placeholder="CPF... "><br>
+    <input type="text" name="rg" value="<?php echo $dadoPessoal['rg']?>" required placeholder="RG... ">
+    <input type="text" name="orgao_emissor" value="<?php echo $dadoPessoal['orgao_emissor']?>" required placeholder="Orgão Emissor... ">
+    <input type="date" name="data_expedicao" value="<?php echo $dadoPessoal['data_expedicao']?>" required placeholder="Data Expedição... ">
+    <input type="text" name="sexo" value="<?php echo $dadoPessoal['sexo']?>"required placeholder="Sexo... ">
+    <input align=center type="date" name="data_nascimento" value="<?php echo $dadoPessoal['data_nascimento']?>" required placeholder="Data Nascimento... ">
+    <input type="text" name="estado_civil" value="<?php echo $dadoPessoal['estado_civil']?>" required placeholder="Estado Civil... ">
+    <input type="text" name="email" value="<?php echo $dadoPessoal['email']?>" required placeholder="Email... "><br>
+    <input type="text" name="nome_pai" value="<?php echo $dadoPessoal['nome_pai']?>" required placeholder="Nome do Pai... ">
+    <input type="text" name="nome_mae" value="<?php echo $dadoPessoal['nome_mae']?>" required placeholder="Nome da Mãe... ">
+    <input type="text" name="endereco" value="<?php echo $dadoPessoal['endereco']?>" required placeholder="Endereço... ">
+    <input type="text" name="bairro" value="<?php echo $dadoPessoal['bairro']?>" required placeholder="Bairro... ">
+    <input type="text" name="regiao" value="<?php echo $dadoPessoal['regiao']?>" required placeholder="Região... ">
+    <input type="text" name="cidade" value="<?php echo $dadoPessoal['cidade']?>" required placeholder="Cidade... ">
+    <input type="text" name="cep" value="<?php echo $dadoPessoal['cep']?>" required placeholder="CEP... ">
+    <input type="text" name="estado" value="<?php echo $dadoPessoal['estado']?>" required placeholder="Estado... ">
+    <input type="text" name="telefone" value="<?php echo $dadoPessoal['telefone']?>"required placeholder="Telefone... ">
+    <input type="text" name="celular" value="<?php echo $dadoPessoal['celular']?>"required placeholder="Celular... ">
+    <input type="text" name="id_user" value="<?php echo $dadoPessoal['FK_Id_user']?>"required placeholder="ID User... ">
     <input type="submit" value="Salvar">
     <div class="error"><?= $error ?></div>
 </form>
 
 <?php
 echo "<h4>Dados Profissionais:</h4>";
-print_r($dadoProfissional);
+//print_r($dadoProfissional);
+echo $dadoProfissional['resumoprofissional']."<br>";
+echo $dadoProfissional['objetivoprofissional']."<br><br>";
+
 ?>
-<form method="POST" id="dadoProfissional">
+
+<button class="newVaga" id="dadoProfissional" value="<?php $dadoPessoal['Id_candidato'] ?>">Editar Dados Profissionais</button><br><br>
+<form method="POST" id="dadoProfissional" class="container">
     <h1>Dados Profissionais</h1>
     <input type="text" name="resumoprofissional" required placeholder="Resumo Profissional... "><br>
     <input type="text" name="objetivoprofissional" required placeholder="Objetivo Profissional... "><br>
@@ -58,11 +74,8 @@ print_r($dadoProfissional);
 
 <?php
 echo "<h4>Área de Interesse:</h4>";
-print_r($areaInteresse);
 ?>
-
 <table class="table table-striped table-bordered">
-    </br></br></br>
     <tr>
         <td align="center">ID Área Interesse</td>
         <td align="center">Descrição</td>
@@ -72,11 +85,11 @@ print_r($areaInteresse);
     <?php if ($areaInteresse) {
         foreach ($areaInteresse as $ai){?>
             <tr>
-                <td align="center"><?= $ai['Id_areainteressecandidato']?></td>
-                <td><?= $ai['areaInteresse'] ?></td>
+                <td align="center"><?= $ai['ID_areainteressecandidato']?></td>
+                <td><?= $ai['descricao'] ?></td>
                 <td align="center">
                     <a class="btn btn-primary"
-                       href="dashboard?id=<?= $ai['Id_areainteressecandidato'] ?>">
+                       href="dashboard?id=<?= $ai['ID_areainteressecandidato'] ?>">
                         Ver Detalhes
                     </a>
                 </td>
@@ -87,21 +100,23 @@ print_r($areaInteresse);
         echo "<tr>" . "No momento não há vagas Disponíveis para estas Areas de Interesse" . "</tr>";
     }?>	
 </table>
-
-<form method="POST" id="areaInteresse">
+<button class="newVaga" id="areaInteresse" value="<?php $dadoPessoal['Id_candidato'] ?>">Adicionar Área Interesse</button><br><br>
+<form method="POST" id="areaInteresse" class="container">
     <h1>Áreas de Interesse</h1>
-    <input type="text" name="areaInteresse" required placeholder="Área de Interesse... "><br>
+    <select name="areaInteresse">
+        <option value="1">Ciências Exatas</option>
+        <option value="2">Química</option>
+        <option value="3">Física</option>
+        <option value="4">Letras</option>
+    </select>
     <input type="submit" value="Salvar">
     <div class="error"><?= $error ?></div>
 </form>
 
-
 <?php
 echo "<h4>Redes Sociais:</h4>";
-print_r($redeSocial);
-$info = $redeSocial;
+//print_r($redeSocial);
 ?>
-
 <table class="table table-striped table-bordered">
     </br></br></br>
     <tr>
@@ -114,13 +129,13 @@ $info = $redeSocial;
     <?php if ($redeSocial) {
         foreach ($redeSocial as $rs){?>
             <tr>
-                <td align="center"><?= $rs['id_redesocialcandidato']?></td>
+                <td align="center"><?= $rs['Id_redesocialcandidato']?></td>
                 <td><?= $rs['redesocial'] ?></td>
                 <td><?= $rs['link_redesocial'] ?></td>
                 <td align="center">
                     <a class="btn btn-primary"
-                       href="dashboard?id=<?= $rs['id_redesocialcandidato'] ?>">
-                        Ver Detalhes
+                       href="dashboard?id=<?= $rs['Id_redesocialcandidato'] ?>">
+                        Remover
                     </a>
                 </td>
             </tr>
@@ -130,10 +145,16 @@ $info = $redeSocial;
         echo "<tr>" . "No momento não há vagas Disponíveis para estas Areas de Interesse" . "</tr>";
     }?>	
 </table>
-
-<form method="POST" id="redeSocial">
+<button class="newVaga" id="redeSocial" value="<?php $dadoPessoal['Id_candidato'] ?>">Adicionar Rede Social</button><br><br>
+<form method="POST" id="redeSocial" class="container">
     <h1>Redes Sociais</h1>
-    <input type="text" name="redesocial" required placeholder="Rede Social... "><br>
+    <select name="redesocial">
+        <option value="Facebook">Facebook</option>
+        <option value="Instagram">Instagram</option>
+        <option value="Twitter">Twitter</option>
+        <option value="Linkedin">Linkedin</option>
+    </select>
+    
     <input type="text" name="link_redesocial" required placeholder="Link de Acesso... "><br>
     <input type="submit" value="Salvar">
     <div class="error"><?= $error ?></div>
@@ -141,11 +162,22 @@ $info = $redeSocial;
 
 <?php
 echo "<h4>Dados Complementares:</h4>";
-print_r($dadoComplementar);
+echo $dadoComplementar['tipohabilitacao']."  -  ".$dadoComplementar['numerocnh']."<br>";
+echo $dadoComplementar['carteiratrabalho']."  -  ".$dadoComplementar['carteiramilitar']."<br>";
+
+
+//print_r($dadoComplementar);
 ?>
-<form method="POST" id="dadoComplementar">
+<button class="newVaga" id="dadoComplementar" value="<?php $dadoPessoal['Id_candidato'] ?>">Editar Dados Complementares</button><br><br>
+<form method="POST" id="dadoComplementar" class="container">
     <h1>Dados Complementares</h1>
-    <input type="text" name="tphabilitacao" required placeholder="Tipo Habilitação... "><br>
+    <select name="tphabilitacao">
+        <option value="Tipo A">Tipo A</option>
+        <option value="Tipo B">Tipo B</option>
+        <option value="Tipo C">Tipo C</option>
+        <option value="Tipo D">Tipo D</option>
+        <option value="Tipo E">Tipo E</option>
+    </select>
     <input type="text" name="numerocnh" required placeholder="Número CNH... "><br>
     <input type="text" name="carteiraTrabalho" required placeholder="Carteira de Trabalho... "><br>
     <input type="text" name="carteiraMilitar" required placeholder="Carteira Militar... "><br>
@@ -155,9 +187,8 @@ print_r($dadoComplementar);
 
 <?php
 echo "<h4>Formação Acadêmica:</h4>";
-print_r($formacao);
+//print_r($formacao);
 ?>
-
 <table class="table table-striped table-bordered">
     </br></br></br>
     <tr>
@@ -173,17 +204,14 @@ print_r($formacao);
     <?php if ($formacao) {
         foreach ($formacao as $f){?>
             <tr>
-                <td align="center"><?= $f['id_formacao']?></td>
+                <td align="center"><?= $f['Id_formacaoacademica']?></td>
                 <td><?= $f['curso'] ?></td>
                 <td><?= $f['instituicao'] ?></td>
                 <td><?= $f['situacao'] ?></td>
                 <td><?= $f['dataInicio'] ?></td>
                 <td><?= $f['dataFim'] ?></td>
                 <td align="center">
-                    <a class="btn btn-primary"
-                       href="dashboard?id=<?= $f['id_formacao'] ?>">
-                        Ver Detalhes
-                    </a>
+                    <button class="newVaga" id="formacao" value="<?php $dadoPessoal['Id_candidato'] ?>">Editar Formação Acadêmica</button><br><br>
                 </td>
             </tr>
             <?php
@@ -193,24 +221,26 @@ print_r($formacao);
     }?>	
 </table>
 
-<form method="POST" id="formacao">
+<button class="newVaga" id="formacao" value="<?php $dadoPessoal['Id_candidato'] ?>">Nova Formação Acadêmica</button><br><br>
+<form method="POST" id="formacao" class="container">
     <h1>Formação Acadêmica</h1>
     <input type="text" name="curso" required placeholder="Curso... "><br>
     <input type="text" name="instituicao" required placeholder="Instituição de Ensino... "><br>
-    <input type="text" name="situacao" required placeholder="Situação... "><br>
+    <select name="situacao">
+        <option value="Concluido">Concluído</option>
+        <option value="Cursando">Cursando</option>
+        <option value="Pausado">Pausado</option>
+    </select>
     <input type="date" name="dataInicio" required placeholder="Data de Início... "><br>
     <input type="date" name="dataFim" required placeholder="Data de Finalização... "><br>
+    <input type="date" name="previsaoTermino" required placeholder="Previsão de Término... "><br>
     <input type="submit" value="Salvar">
     <div class="error"><?= $error ?></div>
 </form>
 
-
-
 <?php
 echo "<h4>Idiomas:</h4>";
-print_r($idioma);
 ?>
-
 <table class="table table-striped table-bordered">
     </br></br></br>
     <tr>
@@ -223,12 +253,12 @@ print_r($idioma);
     <?php if ($idioma) {
         foreach ($idioma as $i){?>
             <tr>
-                <td align="center"><?= $i['id_idiomacandidato']?></td>
+                <td align="center"><?= $i['Id_idioma']?></td>
                 <td><?= $i['idioma'] ?></td>
                 <td><?= $i['nivel'] ?></td>
                 <td align="center">
                     <a class="btn btn-primary"
-                       href="dashboard?id=<?= $i['id_idiomacandidato'] ?>">
+                       href="dashboard?id=<?= $i['Id_idioma'] ?>">
                         Ver Detalhes
                     </a>
                 </td>
@@ -240,20 +270,26 @@ print_r($idioma);
     }?>	
 </table>
 
-<form method="POST" id="idioma">
+<button class="newVaga" id="idioma" value="<?php $dadoPessoal['Id_candidato'] ?>">Adicionar Idioma</button><br><br>
+<form method="POST" id="idioma" class="container">
     <h1>Idiomas</h1>
     <input type="text" name="idioma" required placeholder="Idioma... "><br>
-    <input type="text" name="nivel" required placeholder="Nível... "><br>
+    <select name="nivel">
+        <option value="Básico">Básico</option>
+        <option value="Intermediário">Intermediário</option>
+        <option value="Avançado">Avançado</option>
+    </select>
     <input type="submit" value="Salvar">
     <div class="error"><?= $error ?></div>
 </form>
 
-
 <?php
 echo "<h4>Conhecimentos:</h4>";
-print_r($conhecimento);
+echo $conhecimento['conhecimento'];
+//print_r($conhecimento);
 ?>
-<form method="POST" id="form-register">
+<button class="newVaga" id="conhecimentos" value="<?php $dadoPessoal['Id_candidato'] ?>">Editar Conhecimentos</button><br><br>
+<form method="POST" id="conhecimentos" class="container">
     <h1>Conhecimentos</h1>
     <input type="text" name="conhecimento" required placeholder="Conhecimentos... ">
     <input type="submit" value="Salvar">
@@ -262,9 +298,8 @@ print_r($conhecimento);
 
 <?php
 echo "<h4>Experiências Profissionais:</h4>";
-print_r($experiencia);
+//print_r($experiencia);
 ?>
-
 <table class="table table-striped table-bordered">
     </br></br></br>
     <tr>
@@ -277,15 +312,13 @@ print_r($experiencia);
     <?php if ($experiencia) {
         foreach ($experiencia as $e){?>
             <tr>
-                <td align="center"><?= $e['id_experienciacandidato']?></td>
+                <td align="center"><?= $e['Id_experienciaprofissional']?></td>
                 <td><?= $e['empresa'] ?></td>
                 <td><?= $e['cargo'] ?></td>
                 <td class='lasttd' align="center">
-                    <div class="edit btn btn-primary" data-value="<?= $e['id_experienciacandidato'] ?>">
-                        Editar
-                    </div>
+                    <button class="newVaga" id="experiencia" value="<?php $dadoPessoal['Id_candidato'] ?>">Editar Experiência</button><br><br>
                     
-                    <div class="delete btn btn-primary" data-value="<?= $e['id_experienciacandidato'] ?>">
+                    <div class="delete btn btn-primary" data-value="<?= $e['Id_experienciaprofissional'] ?>">
                         Remover
                     </div>
                 </td>
@@ -296,13 +329,22 @@ print_r($experiencia);
         echo "<tr>" . "No momento não há vagas Disponíveis para estas Areas de Interesse" . "</tr>";
     }?>	
 </table>
-
-
-<form method="POST" id="experiencia">
+<button class="newVaga" id="experiencia" value="novo">Adicinonar Experiência Profissional</button><br><br>
+<form method="POST" id="experiencia" class="container">
     <h1>Experiência Profissional</h1>
-    <input type="hidden" name='id' value='0'> 
+    <!--<input type="hidden" name='id' value='0'> -->
     <input type="text" name="empresa" required placeholder="Empresa... " value=''><br>
+    <input type="date" name="dataAdmissao" required placeholder="... " value=''><br>
+        <input type="date" name="dataDemissao" required placeholder="... " value=''><br>
     <input type="text" name="cargo" required placeholder="Cargo... " value=''><br>
+    <input type="text" name="atualEmprego" required placeholder="Atual Emprego... " value=''><br>
+     <select name="areaTrabalho">
+        <option value="1">Ciências Exatas</option>
+        <option value="2">Química</option>
+        <option value="3">Física</option>
+        <option value="4">Letras</option>
+    </select>
+    <input type="textarea" name="atividadesExercidas" required placeholder="Atividades Exercidas... " value=''><br>
     <input type="submit" value="Salvar">
     <div class="error"><?= $error ?></div>
 </form>

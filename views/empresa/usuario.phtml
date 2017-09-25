@@ -1,10 +1,31 @@
 <?php
-    echo $_SESSION['Id_empresa'];
+    echo "ID Empresa: ".$_SESSION['Id_empresa']."<br>";
+    foreach($analistas as $a){
+        echo $a['nome']."       -       ".$a['email']?>
+        <a>Situação:
+            <select name="situacao">
+                <option value="1">Ativo</option>
+                <option value="2">Inativo</option>
+            </select>
+        </a>
+        <a>Nível Acesso:
+            <select name="nivel">
+                <option value="1">Usuário</option>
+                <option value="2">Empreendedor</option>
+                <option value="3">Administrador</option>
+            </select>
+        </a><br>
+    <?php }
 ?>
-<form method="POST" id="form-register">
+<br><br>
+<button class="newVaga" id="inserirAnalista" value="novo">Novo Usuário</button><br><br>
+<form method="POST" id="inserirAnalista" class="container">
     <h1>Registrar Analista</h1>
+    <input type="text" name="nome_user" required placeholder="Nome Completo: ">
+    <input type="text" name="email_user" required placeholder="E-mail: ">
     <input type="text" name="login" required placeholder="Login: ">
     <input type="password" name="senha" required placeholder="Senha: "><br>
     <input type="submit" value="Registrar">
     <div class="error"><?= $error ?></div>
 </form>
+

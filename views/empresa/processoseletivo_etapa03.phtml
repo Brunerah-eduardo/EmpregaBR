@@ -1,0 +1,39 @@
+<?php
+    echo "Etapa 03 - Processo Seletivo: ".$id_processoseletivo."<br><br>";
+    foreach($candidatosetapa as $c){
+        echo "ID Candidato: ".$c['Id_candidato']."<br>";
+        echo $c['nome_completo']."      -       ".$c['cidade']."<br>";
+        echo $c['data_nascimento']."    -   ".$c['email']."<br><br>";?>
+    <?php }
+    
+    if (isset($candidatosetapa)) {
+        $value = true;
+        $tamanho = sizeof($candidatosetapa);
+        $contador = 1;
+        $form = "";?>
+    
+        <table class='candidatosID'>
+            <?php foreach($candidatosetapa as $ce){
+                if($value == true){ ?>
+                    <form method='POST' name='selecionado'>
+                        <input type="hidden" name="id_processoseletivo" value="<?php echo $id_processoseletivo ?>">
+                    <?php $value = false; 
+                } ?>
+                <tr><td>
+                <input type="checkbox" name="avancacandidato3[]" value="<?php echo $ce['Id_candidato'] ?>">Selecionado
+                <?php if($contador == $tamanho){ ?>
+                    <tr><td>
+                    <input type='submit' value='Avançar'>
+                    </td></tr>
+                <?php }else{ ?>
+                    </td></tr>
+                <?php } 
+                    $contador++;
+                } ?>
+                </form>
+                </table>
+                <button class="selecionarTodos">Selecionar Todos Candidatos</button>
+        <?php echo $form;
+        }?>
+    
+   

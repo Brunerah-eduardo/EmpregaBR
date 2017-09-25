@@ -1,0 +1,63 @@
+<form method="POST">
+    <h1>Avaliar Candidatos para os Processos Seletivos</h1>
+    <select name="processoseletivo">
+        <?php 
+            foreach ($processosSeletivos as $ps) {
+                if($ps['ID_processoseletivo'] == $idprocesso){?>
+                <option selected="selected" value="<?php echo $ps['ID_processoseletivo']?>"><?php echo "Nº Processo Seletivo: ".$ps['ID_processoseletivo']." - Cargo: ".$ps['cargo'] ?></option>    
+            <?php }else{ ?>
+                <option value="<?php echo $ps['ID_processoseletivo']?>"><?php echo "Nº Processo Seletivo: ".$ps['ID_processoseletivo']." - Cargo: ".$ps['cargo'] ?></option>    
+                
+            <?php }} ?>
+        ?>
+    </select>
+    <input name="filtro" type="submit" value="Filtrar">
+</form>    
+
+<form method="POST" name="candidatosaprovados">
+    <h3>Candidatos inscritos para essa vaga</h3>
+    <?php if (isset($candidatosvaga)) {
+        $value = true;
+        $tamanho = sizeof($candidatosvaga);
+        $contador = 1;
+        $form = "";
+        foreach ($candidatosvaga as $cv){
+            echo $cv['nome_completo']."<br>";?>
+            <!--<input type="checkbox" name="<?php //echo $cv['fk_Id_candidato']?>"><?php //echo $cv['nome_completo']."<br>"?>-->
+    <?php }?>
+    
+            <table class='candidatosID'>
+        
+        <?php foreach($candidatosvaga as $cv){
+            
+            if($value == true){ ?>
+                <form method='POST' name='selecionado'>
+                
+            <?php $value = false; } ?>
+            <tr><td>
+            <input type="checkbox" name="candidato[]" value="<?php echo $cv['fk_Id_candidato'] ?>">Selecionado
+            <?php if($contador == $tamanho){ ?>
+                <tr><td>
+                <input type='submit' value='Avançar'>
+                </td></tr>
+            <?php }else{ ?>
+                </td></tr>
+            <?php }
+            $contador++;
+        } ?>
+        </form>
+        </table>
+        <button class="selecionarTodos">Selecionar Todos Candidatos</button>
+        <?php echo $form;
+    
+    
+        }?>
+    <!--<br><br><h3>Candidatos em Geral</h3>
+    <?php /*if ($candidatos) {
+        foreach ($candidatos as $c){?>
+            <input type="checkbox" name="<?php echo $c['Id_candidato']?>"><?php echo $c['nome_completo']."<br>"?>
+    <?php }}*/?>
+
+    <button>Selecionar Todos Candidatos</button> -->
+<br><input type="submit" value="Iniciar Processo Seletivo" />
+</form>

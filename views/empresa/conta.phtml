@@ -1,1 +1,22 @@
-Página de Opções da Conta
+<br><h3 align="center"><?php echo $dadosconta['razaoSocial']; ?></h3>
+<br><h3 align="center">Alterar Informações de Meu Perfil de Acesso</h3>
+<br><br>
+<form align=center method="POST" enctype="multipart/form-data">
+  <label>Foto:</label>
+  <input type="file" name="foto" />
+  <input type="submit" value="Salvar" />
+</form>
+
+<button align=center class="newVaga" id="alterarSenha">Alterar Senha</button><br><br></a>
+<form align=center method="POST" id="alterarSenha" class="container">
+    Razão Social: <input type="text" name="nome" required placeholder="<?php echo $dadosconta['razaoSocial'] ?>" disabled>
+    <br>Nome Fantasia: <input type="text" name="nome" required placeholder="<?php echo $dadosconta['nomeFantasia'] ?>" disabled>
+    <br>E-mail: <input type="text" name="email" required placeholder="<?php echo $dadosconta['email'] ?>" disabled>
+    <br>CNPJ: <input type="text" name="cpf" required placeholder="<?php echo $dadosconta['cnpj'] ?>" disabled>
+    <br>Nova Senha:<input type="password" name="password" required placeholder="Insira sua nova Senha... ">
+    <br>Confirme a Senha:<input type="password" name="password" required placeholder="Confirme sua nova Senha... ">
+    <br><br><button>Salvar Alterações</button>
+    <br>
+    <br>
+    <br>
+</form>

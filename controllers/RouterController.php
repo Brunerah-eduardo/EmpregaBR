@@ -37,6 +37,7 @@
             $parsedUrl = parse_url($url);
             $parsedUrl["path"] = ltrim($parsedUrl["path"], "/");
             $parsedUrl["path"] = trim($parsedUrl["path"]);
+            $parsedUrl["path"] = rtrim($parsedUrl["path"], "/");
 
             return $explodedUrl = explode("/", $parsedUrl["path"]);
         }

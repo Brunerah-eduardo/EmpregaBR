@@ -12,15 +12,15 @@
 
     <body>
         <header>
-            <a href="cliente">Software EmpregaBR</a>
-            
+            <a href="cliente">Software EmpregaBR</a><br>
+            <a><?php echo $_SESSION['username']?></a>
+        
             <nav id="menu">
                 <ul style="display: flex; margin:0 auto">
                     <li><a href="cliente">Home</a></li>
                     <li><a href="cliente/curriculo">Curriculo</a></li>
-                    <li><a href="cliente/agenda">Agendamentos</a></li>
                     <li><a href="cliente/vaga">Vagas</a></li>
-                    <li><a href="cliente/historico">Processos Seletivos</a></li>
+                    <li><a href="cliente/processoseletivo">Processos Seletivos</a></li>
                     <li><a href="cliente/historico">Histórico</a></li>
                     <li><a href="cliente/conta">Conta</a></li>
                 <li><a href="logout">Logout</a></li>
@@ -34,6 +34,7 @@
         </article>
 
         <footer>
+            <h5 align="center">Último acesso ao Sistema realizado em: <?php echo date('d/m/Y H:i', strtotime($data)) ?></h5><br>
             <p>EmpregaBR - Recrutamento e Seleção</p>
         </footer>
     </body>

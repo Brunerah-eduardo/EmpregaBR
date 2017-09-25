@@ -1,1 +1,19 @@
-Página de Históricos de Processos Seletivos
+Página de Históricos de Processos Seletivos<br><br>
+
+<?php 
+    //print_r($historicovagas);
+    
+    foreach($historicovagas as $h){
+        echo "Cargo: ".$h['cargo']."<br>";
+        echo "Área de Interesse: ".$h['FK_Id_areainteresse']."<br>";
+        echo "Status da Vaga: ";
+        if ($h['statusVaga']=='N')echo "Não Iniciado<br>";
+        else if ($h['statusVaga']=='A')echo "Aberta<br>";
+        else if ($h['statusVaga']=='EA')echo "Em Andamento<br>";
+        else if ($h['statusVaga']=='P')echo "Pausado<br>";
+        echo "Empresa: ".$h['FK_Id_empresa']."<br>";
+        echo "Data de Cadastro: ".$h['dataCadastro']."<br><br>";
+    }
+    
+    
+?>

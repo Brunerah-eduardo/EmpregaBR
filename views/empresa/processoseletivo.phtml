@@ -1,1 +1,84 @@
-Página de Processo Seletivo
+<?php
+    //print_r($vagaspendentes);
+?>    
+<h1>Processos Seletivos</h1><br>
+<table align="center">
+    <tr align="center">
+        <td>ID</td>
+        <td>Vaga</td>
+        <td>Status</td>
+        <td>Qtde. Vagas</td>
+        <td>Empresa</td>
+        <td>Ações</td>
+        <td class="adicionar">Adicionar</td>
+    </tr>
+    
+    <?php foreach($processosSeletivos as $ps){ ?>
+        <tr align="center">
+            <td><?php echo $ps['ID_processoseletivo'] ?></td>
+            <td><?php echo $ps['cargo'] ?></td>
+            <td><?php echo $ps['status'] ?></td>
+            <td><?php echo $ps['vagasrestantes'] ?></td>
+            <td><?php echo $ps['FK_Id_empresa'] ?></td>
+            <!--<td class="editar"><?php //echo $v['ID_vaga'] ?></td>
+            <td class="editar">Editar</td>
+            <td class="deletar"><?php //echo $v['ID_vaga'] ?></td>
+            <td class="deletar">Deletar</td>-->
+            <td>
+                <form method="POST">
+                    <button name="etapa01" value='<?php echo $ps['ID_processoseletivo'] ?>'>Etapa 01</button>
+                </form>
+            </td>
+            <td>
+                <form method="POST">
+                    <button name="etapa02"value='<?php echo $ps['ID_processoseletivo'] ?>'>Etapa 02</button>
+                </form>
+            </td>
+            <td>
+                <form method="POST">
+                    <button name="etapa03" value='<?php echo $ps['ID_processoseletivo'] ?>'>Etapa 03</button>
+                </form>
+            </td>
+            <td>
+                <form method="POST">
+                    <button name="etapa04" value='<?php echo $ps['ID_processoseletivo'] ?>'>Contratados</button>
+                </form>
+            </td>
+            <td>
+                <form method="POST">
+                    <button name="detalhesTemp" value="<?php echo $ps['ID_processoseletivo'] ?>">Enviar Feedback</button>
+                </form>
+            </td>
+            <td>
+                <form method="POST">
+                    <button name="filtro_processocandidato" value="<?php echo $ps['ID_processoseletivo'] ?>">Vincular Candidatos</button>
+                </form>
+            </td>
+        </tr>
+    <?php } ?>
+</table>
+<br><br>
+<button align=center class="newVaga" id="inserirProcessoSeletivo" value="novo">Novo Processo Seletivo</button><br><br>
+<form method="POST" id="inserirProcessoSeletivo" class="container">
+    <h1>Cadastro de Processo Seletivo</h1>
+    <select name="vaga">
+        <?php 
+            foreach ($vagaspendentes as $v) {?>
+                <option value="<?php echo $v['ID_vaga']?>"><?php echo $v['cargo'] ?></option>    
+            <?php }
+        ?>
+    </select>
+    <select name="status">
+        <option value="A">Aguardando Inicio</option>
+        <option value="CC">Fase de Cadastramento Currículos</option>
+        <option value="AC">Análise dos Candidatos</option>
+        <option value="PA">Processo em Andamento</option>
+        <option value="P">Pausado</option>
+        <option value="C">Concluído</option>
+    </select>
+    
+    <input type="submit" value="Salvar">
+    
+</form>
+
+
