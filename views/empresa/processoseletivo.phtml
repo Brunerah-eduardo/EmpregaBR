@@ -24,34 +24,35 @@
             <td class="editar">Editar</td>
             <td class="deletar"><?php //echo $v['ID_vaga'] ?></td>
             <td class="deletar">Deletar</td>-->
+            
             <td>
                 <form method="POST">
-                    <button name="etapa01" value='<?php echo $ps['ID_processoseletivo'] ?>'>Etapa 01</button>
+                    <button name="etapa01" <?php if ($ps['status']=='C'){ echo 'disabled';} ?> value='<?php echo $ps['ID_processoseletivo'] ?>'>Etapa 01</button>
                 </form>
             </td>
             <td>
                 <form method="POST">
-                    <button name="etapa02"value='<?php echo $ps['ID_processoseletivo'] ?>'>Etapa 02</button>
+                    <button name="etapa02" <?php if ($ps['status']=='C'){ echo 'disabled';} ?> value='<?php echo $ps['ID_processoseletivo'] ?>'>Etapa 02</button>
                 </form>
             </td>
             <td>
                 <form method="POST">
-                    <button name="etapa03" value='<?php echo $ps['ID_processoseletivo'] ?>'>Etapa 03</button>
+                    <button name="etapa03" <?php if ($ps['status']=='C'){ echo 'disabled';} ?> value='<?php echo $ps['ID_processoseletivo'] ?>'>Etapa 03</button>
                 </form>
             </td>
             <td>
                 <form method="POST">
-                    <button name="etapa04" value='<?php echo $ps['ID_processoseletivo'] ?>'>Contratados</button>
+                    <button name="etapa04" <?php if ($ps['status']=='C'){ echo 'disabled';} ?> value='<?php echo $ps['ID_processoseletivo'] ?>'>Contratados</button>
                 </form>
             </td>
             <td>
                 <form method="POST">
-                    <button name="detalhesTemp" value="<?php echo $ps['ID_processoseletivo'] ?>">Enviar Feedback</button>
+                    <button name="detalhesTemp" <?php if ($ps['status']=='C'){ echo 'disabled';} ?> value="<?php echo $ps['ID_processoseletivo'] ?>">Enviar Feedback</button>
                 </form>
             </td>
             <td>
                 <form method="POST">
-                    <button name="filtro_processocandidato" value="<?php echo $ps['ID_processoseletivo'] ?>">Vincular Candidatos</button>
+                    <button name="filtro_processocandidato" <?php if ($ps['status']=='C'){ echo 'disabled';} ?> value="<?php echo $ps['ID_processoseletivo'] ?>">Vincular Candidatos</button>
                 </form>
             </td>
         </tr>

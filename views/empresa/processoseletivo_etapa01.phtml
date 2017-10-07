@@ -1,6 +1,7 @@
 <?php
     echo "Etapa 01 - Processo Seletivo: ".$id_processoseletivo."<br><br>";?>
     <button class="newVaga" value="novo">Avaliar Candidatos</button><br><br>
+    <div class="resposta"></div>
     <?php foreach($candidatosetapa as $c){
         echo "ID Candidato: ".$c['Id_candidato']."<br>";
         echo $c['nome_completo']."      -       ".$c['cidade']."<br>";
@@ -8,6 +9,7 @@
         
         <?php $id = $c['Id_candidato'] ?>
         <form method="POST" class="processoavaliacao container" id="<?php echo $id ?>">
+            <input type="hidden" name="id_processoseletivo" value="<?php echo $id_processoseletivo ?>">
             <input type="text" name="avaliacao" required placeholder="Avaliação: ">
             <input type="text" name="comentario" required placeholder="Comentário: ">
         </form>
@@ -43,7 +45,7 @@
                 } ?>
                 </form>
                 </table>
-    <button class='submitValues'>Avançar</button>
+    <button class='submitValues' value="etapa01">Avançar</button>
                 <button class="selecionarTodos">Selecionar Todos Candidatos</button>
         <?php echo $form;
         }?>

@@ -6,7 +6,6 @@ class ProcessoSeletivo{
         return $result = Db::queryAll("select ps.*, v.cargo from processoseletivo ps inner join vaga v on ps.FK_Id_vaga = v.ID_vaga where ps.status='A'");
     }
     
-    
     public function buscarDados($id_empresa){
         return $result = Db::queryAll("select ps.*, v.cargo from processoseletivo ps inner join vaga v on ps.FK_Id_vaga = v.ID_vaga where ps.FK_Id_empresa=?", array($id_empresa));
     }
@@ -51,25 +50,23 @@ class ProcessoSeletivo{
                 WHERE FK_Id_candidato=? and FK_Id_processoseletivo=?", $params);
     }
     
-    public function avancarCandidatosEtapa03($params = array()){
-        return $result = Db::queryCount("UPDATE processoseletivo_candidato SET
+    public function contratarCandidatos($params = array()){
+        $result = Db::queryCount("UPDATE processoseletivo_candidato SET
                 etapa_candidato=?,
                 avaliacaoFinal=?, 
-                comentarioAvalFinal=?, 
-                feedback=?
+                comentarioAvalFinal=?
                 WHERE FK_Id_candidato=? and FK_Id_processoseletivo=?", $params);
-    }
-    
-    public function contratarCandidatos($params = array()){
-        return $result = Db::queryCount("UPDATE processoseletivo_candidato SET
-                etapa_candidato=?,
-                WHERE FK_Id_candidato=? and FK_Id_processoseletivo=?", $params);
+        return $result;
     }
     
     public function debitarVagasRestantes($params = array()){
-        return $result = Db::queryCount("UPDATE processoseletivo SET
+        $result = Db::queryCount("UPDATE processoseletivo SET
                 vagasrestantes=vagasrestantes-1
-                WHERE ID_processoseletivo=? and vagasrestantes > 0", $params);
+                WHERE ID_processoseletivo=? and vagasrestantes >= 0", $params);
+        $result = Db::queryOne("SELECT vagasrestantes FROM processoseletivo WHERE ID_processoseletivo=?", $params);
+        if($result['vagasrestantes'] == 0){
+            return Db::queryCount("UPDATE processoseletivo SET status = 'C' where ID_processoseletivo=?", $params);
+        }
     }
     
     

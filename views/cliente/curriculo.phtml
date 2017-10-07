@@ -50,7 +50,7 @@ echo "<h4>Dados Pessoais:</h4>";
     <input type="text" name="estado" value="<?php echo $dadoPessoal['estado']?>" required placeholder="Estado... ">
     <input type="text" name="telefone" value="<?php echo $dadoPessoal['telefone']?>"required placeholder="Telefone... ">
     <input type="text" name="celular" value="<?php echo $dadoPessoal['celular']?>"required placeholder="Celular... ">
-    <input type="text" name="id_user" value="<?php echo $dadoPessoal['FK_Id_user']?>"required placeholder="ID User... ">
+    <input type="text" name="id_user" value="<?php echo $dadoPessoal['FK_Id_user']?>"required placeholder="ID User... " disabled>
     <input type="submit" value="Salvar">
     <div class="error"><?= $error ?></div>
 </form>
@@ -58,21 +58,21 @@ echo "<h4>Dados Pessoais:</h4>";
 <?php
 echo "<h4>Dados Profissionais:</h4>";
 //print_r($dadoProfissional);
-echo $dadoProfissional['resumoprofissional']."<br>";
-echo $dadoProfissional['objetivoprofissional']."<br><br>";
+echo "Resumo Profissional: ".$dadoProfissional['resumoprofissional']."<br>";
+echo "Objetivo Profissional: ".$dadoProfissional['objetivoprofissional']."<br><br>";
 
 ?>
 
 <button class="newVaga" id="dadoProfissional" value="<?php $dadoPessoal['Id_candidato'] ?>">Editar Dados Profissionais</button><br><br>
 <form method="POST" id="dadoProfissional" class="container">
-    <h1>Dados Profissionais</h1>
     <input type="text" name="resumoprofissional" required placeholder="Resumo Profissional... "><br>
     <input type="text" name="objetivoprofissional" required placeholder="Objetivo Profissional... "><br>
     <input type="submit" value="Salvar">
-    <div class="error"><?= $error ?></div>
 </form>
 
+
 <?php
+echo $teste;
 echo "<h4>Área de Interesse:</h4>";
 ?>
 <table class="table table-striped table-bordered">
@@ -82,15 +82,15 @@ echo "<h4>Área de Interesse:</h4>";
         <td align="center">Ações</td>
     </tr>
     
-    <?php if ($areaInteresse) {
-        foreach ($areaInteresse as $ai){?>
+    <?php if ($areaInteresseCandidato) {
+        foreach ($areaInteresseCandidato as $ai){?>
             <tr>
-                <td align="center"><?= $ai['ID_areainteressecandidato']?></td>
+                <td align="center"><?= $ai['FK_Id_areainteresse']?></td>
                 <td><?= $ai['descricao'] ?></td>
                 <td align="center">
                     <a class="btn btn-primary"
-                       href="dashboard?id=<?= $ai['ID_areainteressecandidato'] ?>">
-                        Ver Detalhes
+                       href="dashboard?id=<?= $ai['FK_Id_areainteresse'] ?>">
+                        Remover
                     </a>
                 </td>
             </tr>
@@ -104,10 +104,9 @@ echo "<h4>Área de Interesse:</h4>";
 <form method="POST" id="areaInteresse" class="container">
     <h1>Áreas de Interesse</h1>
     <select name="areaInteresse">
-        <option value="1">Ciências Exatas</option>
-        <option value="2">Química</option>
-        <option value="3">Física</option>
-        <option value="4">Letras</option>
+        <?php foreach ($areaInteresse as $ai){ ?>
+                    <option value="<?php echo $ai['ID_areainteresse']?>"> <?php echo $ai['descricao']?></option>
+        <?php } ?>
     </select>
     <input type="submit" value="Salvar">
     <div class="error"><?= $error ?></div>
@@ -118,7 +117,7 @@ echo "<h4>Redes Sociais:</h4>";
 //print_r($redeSocial);
 ?>
 <table class="table table-striped table-bordered">
-    </br></br></br>
+    </br>
     <tr>
         <td align="center">ID Rede Social</td>
         <td align="center">Rede Social</td>
@@ -162,9 +161,9 @@ echo "<h4>Redes Sociais:</h4>";
 
 <?php
 echo "<h4>Dados Complementares:</h4>";
-echo $dadoComplementar['tipohabilitacao']."  -  ".$dadoComplementar['numerocnh']."<br>";
-echo $dadoComplementar['carteiratrabalho']."  -  ".$dadoComplementar['carteiramilitar']."<br>";
-
+echo "Tipo Habilitação: ".$dadoComplementar['tipohabilitacao']."  -  Nº Habilitação: ".$dadoComplementar['numerocnh']."<br>";
+echo "Carteira de Trabalho Nº: ".$dadoComplementar['carteiratrabalho']."  -  Carteira Militar Nº: ".$dadoComplementar['carteiramilitar']."<br>";
+echo "Editar Dados<br>Remover Dados<br>";
 
 //print_r($dadoComplementar);
 ?>
@@ -190,7 +189,7 @@ echo "<h4>Formação Acadêmica:</h4>";
 //print_r($formacao);
 ?>
 <table class="table table-striped table-bordered">
-    </br></br></br>
+    </br>
     <tr>
         <td align="center">ID Formação</td>
         <td align="center">Curso</td>
@@ -242,7 +241,7 @@ echo "<h4>Formação Acadêmica:</h4>";
 echo "<h4>Idiomas:</h4>";
 ?>
 <table class="table table-striped table-bordered">
-    </br></br></br>
+    </br>
     <tr>
         <td align="center">ID Idioma</td>
         <td align="center">Idioma</td>
@@ -259,7 +258,13 @@ echo "<h4>Idiomas:</h4>";
                 <td align="center">
                     <a class="btn btn-primary"
                        href="dashboard?id=<?= $i['Id_idioma'] ?>">
-                        Ver Detalhes
+                        Editar Dados
+                    </a>
+                </td>
+                <td align="center">
+                    <a class="btn btn-primary"
+                       href="dashboard?id=<?= $i['Id_idioma'] ?>">
+                        Remover
                     </a>
                 </td>
             </tr>
@@ -285,7 +290,7 @@ echo "<h4>Idiomas:</h4>";
 
 <?php
 echo "<h4>Conhecimentos:</h4>";
-echo $conhecimento['conhecimento'];
+echo "Conhecimentos do Candidato: ".$conhecimento['conhecimento'];
 //print_r($conhecimento);
 ?>
 <button class="newVaga" id="conhecimentos" value="<?php $dadoPessoal['Id_candidato'] ?>">Editar Conhecimentos</button><br><br>
@@ -301,7 +306,7 @@ echo "<h4>Experiências Profissionais:</h4>";
 //print_r($experiencia);
 ?>
 <table class="table table-striped table-bordered">
-    </br></br></br>
+    </br>
     <tr>
         <td align="center">ID Experiência</td>
         <td align="center">Empresa</td>
@@ -338,11 +343,11 @@ echo "<h4>Experiências Profissionais:</h4>";
         <input type="date" name="dataDemissao" required placeholder="... " value=''><br>
     <input type="text" name="cargo" required placeholder="Cargo... " value=''><br>
     <input type="text" name="atualEmprego" required placeholder="Atual Emprego... " value=''><br>
-     <select name="areaTrabalho">
-        <option value="1">Ciências Exatas</option>
-        <option value="2">Química</option>
-        <option value="3">Física</option>
-        <option value="4">Letras</option>
+     
+    <select name="areaTrabalho">
+        <?php foreach ($areaInteresse as $ai){ ?>
+                    <option value="<?php echo $ai['ID_areainteresse']?>"> <?php echo $ai['descricao']?></option>
+        <?php } ?>
     </select>
     <input type="textarea" name="atividadesExercidas" required placeholder="Atividades Exercidas... " value=''><br>
     <input type="submit" value="Salvar">

@@ -2,33 +2,46 @@
     class CurriculoController extends Controller{
         
         public function process($params){
+          
+            $candidatoDadoProfissional = new CandidatoDadoProfissional();
+            $dadoprofissional = $candidatoDadoProfissional->buscarDados($_SESSION['Id_candidato']);
             
+            
+            if(isset($_POST['resumoprofissional']) && isset($_POST['objetivoprofissional'])){
+                $this->data['teste'] = $_POST['resumoprofissional'].$_POST['objetivoprofissional'];
+                $dados = array($_SESSION['Id_candidato'],$_POST['resumoprofissional'], $_POST['objetivoprofissional']);
+                    $InsertDadoProfissional = $candidatoDadoProfissional->inserirDados($dados);
+                    if(!count($InsertDadoProfissional)>0)
+                        $this->data['error'] = 'Não foi possível inserir seus dados no momento...';
+                    else
+                        $this->data['error'] = 'Registro Inserido com Sucesso...';
+                    //$this->redirect('cliente/curriculo');
+            }
             $candidatoDadoPessoal = new CandidatoDadoPessoal();
             $dadoPessoal = $candidatoDadoPessoal->buscarDados($_SESSION['Id_user']);
             
-            $candidatoDadoProfissional = new CandidatoDadoProfissional();
-            $dadoprofissional = $candidatoDadoProfissional->buscarDados($_SESSION['Id_user']);
-            
+           
             $candidatoAreaInteresse = new CandidatoAreaInteresse();
-            $areaInteresse = $candidatoAreaInteresse->buscarDados($_SESSION['Id_user']);
+            $areaInteresseCandidato = $candidatoAreaInteresse->buscarDados($_SESSION['Id_candidato']);
+            $areaInteresse = $candidatoAreaInteresse->buscarAreasInteresse();
             
             $candidatoRedeSocial = new CandidatoRedeSocial();
-            $redeSocial = $candidatoRedeSocial->buscarDados($_SESSION['Id_user']);
+            $redeSocial = $candidatoRedeSocial->buscarDados($_SESSION['Id_candidato']);
             
             $candidatoDadoComplementar = new CandidatoDadoComplementar();
-            $dadocomplementar = $candidatoDadoComplementar->buscarDados($_SESSION['Id_user']);
+            $dadocomplementar = $candidatoDadoComplementar->buscarDados($_SESSION['Id_candidato']);
             
             $candidatoFormacao = new CandidatoFormacao();
-            $formacao = $candidatoFormacao->buscarDados($_SESSION['Id_user']);
+            $formacao = $candidatoFormacao->buscarDados($_SESSION['Id_candidato']);
             
             $candidatoIdioma = new CandidatoIdioma();
-            $idioma = $candidatoIdioma->buscaDados($_SESSION['Id_user']);
+            $idioma = $candidatoIdioma->buscaDados($_SESSION['Id_candidato']);
             
             $candidatoConhecimento = new CandidatoConhecimento();
-            $conhecimento = $candidatoConhecimento->buscaDados($_SESSION['Id_user']);
+            $conhecimento = $candidatoConhecimento->buscaDados($_SESSION['Id_candidato']);
             
             $candidatoExperiencia = new CandidatoExperiencia();
-            $experiencia = $candidatoExperiencia->buscaDados($_SESSION['Id_user']);
+            $experiencia = $candidatoExperiencia->buscaDados($_SESSION['Id_candidato']);
             
             $this->data['error'] = '';
             
@@ -42,26 +55,26 @@
                 $this->redirect('cliente/curriculo');
             }
             
-            if(isset($_POST['resumoprofissional']) && isset($_POST['objetivoprofissional'])){
-                if(count($candidatoDadoProfissional->buscarDados($_SESSION['Id_candidato']))>0){
-                    $dados = array($_POST['resumoprofissional'], $_POST['objetivoprofissional'],$_SESSION['Id_candidato']);
-                    $InsertDadoProfissional = $candidatoDadoProfissional->atualizarDados($dados);
-                    if(!count($InsertDadoProfissional)>0)
-                        $this->data['error'] = 'Não foi possível inserir seus dados no momento...';
-                    else
-                        $this->data['error'] = 'Registro Inserido com Sucesso...';
-                    $this->redirect('cliente/curriculo');
-                }else{
-                    $dados = array($_SESSION['Id_candidato'],$_POST['resumoprofissional'], $_POST['objetivoprofissional']);
-                    $InsertDadoProfissional = $candidatoDadoProfissional->inserirDados($dados);
-                    if(!count($InsertDadoProfissional)>0)
-                        $this->data['error'] = 'Não foi possível inserir seus dados no momento...';
-                    else
-                        $this->data['error'] = 'Registro Inserido com Sucesso...';
-                    $this->redirect('cliente/curriculo');
-                }
-                    
-            }
+//            if(isset($_POST['resumoprofissional']) && isset($_POST['objetivoprofissional'])){
+//                if(count($candidatoDadoProfissional->buscarDados($_SESSION['Id_candidato']))>0){
+//                    $dados = array($_POST['resumoprofissional'], $_POST['objetivoprofissional'],$_SESSION['Id_candidato']);
+//                    $InsertDadoProfissional = $candidatoDadoProfissional->atualizarDados($dados);
+//                    if(!count($InsertDadoProfissional)>0)
+//                        $this->data['error'] = 'Não foi possível inserir seus dados no momento...';
+//                    else
+//                        $this->data['error'] = 'Registro Inserido com Sucesso...';
+//                    $this->redirect('cliente/curriculo');
+//                }else{
+//                    $dados = array($_SESSION['Id_candidato'],$_POST['resumoprofissional'], $_POST['objetivoprofissional']);
+//                    $InsertDadoProfissional = $candidatoDadoProfissional->inserirDados($dados);
+//                    if(!count($InsertDadoProfissional)>0)
+//                        $this->data['error'] = 'Não foi possível inserir seus dados no momento...';
+//                    else
+//                        $this->data['error'] = 'Registro Inserido com Sucesso...';
+//                    $this->redirect('cliente/curriculo');
+//                }
+//                    
+//            }
             
             if(isset($_POST['areaInteresse'])){
                 $dados = array($_SESSION['Id_candidato'], $_POST['areaInteresse']);
@@ -172,6 +185,7 @@
             $this->data['dadoProfissional'] = $dadoprofissional;
             $this->data['experiencia'] = $experiencia;
             $this->data['formacao'] = $formacao;
+            $this->data['areaInteresseCandidato'] = $areaInteresseCandidato;
             $this->data['areaInteresse'] = $areaInteresse;
             $this->data['idioma'] = $idioma;
             $this->data['redeSocial'] = $redeSocial;

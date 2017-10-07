@@ -6,6 +6,54 @@
             $this->head['title'] = 'Processos Seletivos';
             $this->head['desc'] = '';
             
+            if(isset($_POST['data'])){
+                if(is_array($_POST['data'])){
+                    $dados = $_POST['data'];
+                    $p = new ProcessoSeletivo();
+                    foreach($dados as $d){
+                        $id_candidato = $d['id'];
+                        $nota = $d['avaliacao'];
+                        $comentario = $d['comentario'];
+                        $id_processoseletivo = $d['id_processoseletivo'];
+                        
+                        $p->avancarCandidatosEtapa01(array(1, $nota, $comentario, $id_candidato, $id_processoseletivo));
+                        }
+                    echo utf8_encode("empresa/processo-seletivo");
+                }
+                exit;
+            }else if(isset($_POST['data2'])){
+                if(is_array($_POST['data2'])){
+                    $dados = $_POST['data2'];
+                    $p = new ProcessoSeletivo();
+                    foreach($dados as $d){
+                        $id_candidato = $d['id'];
+                        $nota = $d['avaliacao'];
+                        $comentario = $d['comentario'];
+                        $id_processoseletivo = $d['id_processoseletivo'];
+                        
+                        $p->avancarCandidatosEtapa02(array(2, $nota, $comentario, $id_candidato, $id_processoseletivo));
+                        }
+                    echo utf8_encode("empresa/processo-seletivo");
+                }
+                exit;
+            }else if(isset($_POST['data3'])){
+                if(is_array($_POST['data3'])){
+                    $dados = $_POST['data3'];
+                    $p = new ProcessoSeletivo();
+                    foreach($dados as $d){
+                        $id_candidato = $d['id'];
+                        $nota = $d['avaliacao'];
+                        $comentario = $d['comentario'];
+                        $id_processoseletivo = $d['id_processoseletivo'];
+                        
+                        $p->contratarCandidatos(array(4, $nota, $comentario, $id_candidato, $id_processoseletivo));
+                        $p->debitarVagasRestantes(array($id_processoseletivo));
+                        }
+                    echo utf8_encode("empresa/processo-seletivo");
+                }
+                exit;
+            }
+            
             if($_SESSION['level']==1){
                 $p = new ProcessoSeletivo();
                 $processosativos = $p->buscarProcessosSeletivosAtivos();
@@ -36,7 +84,7 @@
                 }
             }
             
-            if(isset($_POST['avancacandidato1'])){
+            /*if(isset($_POST['avancacandidato1'])){
                 $id_processoseletivo = $_POST['id_processoseletivo'];
                 $array = $_POST['avancacandidato1'];
                 $p = new ProcessoSeletivo();
@@ -47,7 +95,7 @@
                     $p->avancarCandidatosEtapa01($dados);
                     //echo $value."<br>";
                 }
-            }else if(isset($_POST['avancacandidato2'])){
+            }else*/ if(isset($_POST['avancacandidato2'])){
                 $id_processoseletivo = $_POST['id_processoseletivo'];
                 $array = $_POST['avancacandidato2'];
                 $p = new ProcessoSeletivo();
@@ -66,10 +114,10 @@
                     $avaliacaoEtapa = 'Avaliação Final';
                     $feedback = 'Feedback após término do processo seletivo';
                     
-                    $dados = array(3, $notaEtapa, $avaliacaoEtapa, $feedback, $value, $id_processoseletivo);
+                    $dados = array(4, $notaEtapa, $avaliacaoEtapa, $feedback, $value, $id_processoseletivo);
                     $p->avancarCandidatosEtapa03($dados);
-                    $dados = array(4, $value, $id_processoseletivo);
-                    $p->avancarCandidatosEtapa03($dados);
+                    //$dados = array(4, $value, $id_processoseletivo);
+                    //$p->avancarCandidatosEtapa03($dados);
                     $p->debitarVagasRestantes(array($id_processoseletivo));
                 }
             }
@@ -130,7 +178,7 @@
             } else if(isset($_POST['etapa04'])){
                 
                 $id_processoseletivo = $_POST['etapa04'];
-                $dados = array($id_processoseletivo,3);
+                $dados = array($id_processoseletivo,4);
                 $candidatosetapa = $p->buscarCandidatosProcessosSeletivos($dados);
                 $this->data['candidatosetapa'] = $candidatosetapa;
                 $this->data['id_processoseletivo'] = $id_processoseletivo;
@@ -159,6 +207,6 @@
             $this->data['candidatos'] = $candidatos;
             }
             
+            }   
         }
-    }
 ?>

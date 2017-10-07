@@ -7,9 +7,11 @@
             $this->head['desc'] = '';
             
             if($_SESSION['level']==1){
-                $v = new Vaga();
-                $historicovagas = $v->buscaHistoricoVagas($_SESSION['Id_candidato']);
-                $this->data['historicovagas'] = $historicovagas;
+                /*$v = new Vaga();
+                $historicovagas = $v->buscaHistoricoVagas($_SESSION['Id_candidato']);*/
+                $h = new Historico();
+                $historico = $h->buscarRegistros($_SESSION['Id_candidato']);
+                $this->data['historico'] = $historico;
                 $this->view = 'cliente/historico';
             }else{
                 $this->view = 'empresa/historico';

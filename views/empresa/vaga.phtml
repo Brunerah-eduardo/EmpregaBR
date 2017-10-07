@@ -55,11 +55,16 @@
         </tr>
     <?php } ?>
 </table>
+<br><br><br>
 
 <form method="POST" class="container" id="novavaga">
     <h1>Vaga</h1>
-    <input type="text" name="id" readonly placeholder="id: ">
-    <input type="text" name="areaInteresse" required placeholder="areainteresse: ">
+    <input hidden type="text" name="id" readonly placeholder="id: ">
+    <select name="areaInteresse">
+        <?php foreach ($areaInteresse as $ai){ ?>
+                    <option value="<?php echo $ai['ID_areainteresse']?>"> <?php echo $ai['descricao']?></option>
+        <?php } ?>
+    </select>
     <input type="text" name="cargo" required placeholder="cargo: ">
     <input type="text" name="descricao" required placeholder="descricao: ">
     <input type="text" name="qtdeVagas" required placeholder="qtdeVagas: ">
@@ -73,5 +78,5 @@
     <?php if(!empty($error)){?>
         <div class="error"><?php echo $error ?></div>
     <?php } ?>
-    <br>
+    <br><br><br>
 </form> 

@@ -1,14 +1,22 @@
 <?php
-    echo "Etapa 02 - Processo Seletivo: ".$id_processoseletivo."<br><br>";
-    foreach($candidatosetapa as $c){
+    echo "Etapa 01 - Processo Seletivo: ".$id_processoseletivo."<br><br>";?>
+    <button class="newVaga" value="novo">Avaliar Candidatos</button><br><br>
+    <div class="resposta"></div>
+    <?php foreach($candidatosetapa as $c){
         echo "ID Candidato: ".$c['Id_candidato']."<br>";
         echo $c['nome_completo']."      -       ".$c['cidade']."<br>";
-        echo $c['data_nascimento']."    -   ".$c['email']."<br><br>";
-        echo "Avaliação RH: ".$c['avaliacaoRH']."<br><br>";
-        echo "Comentário RH: ".$c['comentarioRH']."<br><br>";?>
-    <?php }
+        echo $c['data_nascimento']."    -   ".$c['email']."<br><br>";?>
+        
+        <?php $id = $c['Id_candidato'] ?>
+        <form method="POST" class="processoavaliacao container" id="<?php echo $id ?>">
+            <input type="hidden" name="id_processoseletivo" value="<?php echo $id_processoseletivo ?>">
+            <input type="text" name="avaliacao" required placeholder="Avaliação: ">
+            <input type="text" name="comentario" required placeholder="Comentário: ">
+        </form>
+    <?php }?>
     
-    if (isset($candidatosetapa)) {
+    
+    <?php if (isset($candidatosetapa)) {
         $value = true;
         $tamanho = sizeof($candidatosetapa);
         $contador = 1;
@@ -22,10 +30,13 @@
                     <?php $value = false; 
                 } ?>
                 <tr><td>
-                <input type="checkbox" name="avancacandidato2[]" value="<?php echo $ce['Id_candidato'] ?>">Selecionado
+                <input class="avancacandidato" type="checkbox" name="avancacandidato1[]" value="<?php echo $ce['Id_candidato'] ?>">Selecionado
+                
+                
+                
                 <?php if($contador == $tamanho){ ?>
                     <tr><td>
-                    <input type='submit' value='Avançar'>
+                    
                     </td></tr>
                 <?php }else{ ?>
                     </td></tr>
@@ -34,6 +45,7 @@
                 } ?>
                 </form>
                 </table>
+    <button class='submitValues' value="etapa02">Avançar</button>
                 <button class="selecionarTodos">Selecionar Todos Candidatos</button>
         <?php echo $form;
         }?>

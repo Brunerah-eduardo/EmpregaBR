@@ -62,8 +62,11 @@
                 }else if($params[0] == 'empresa'){
                 
                     $v = new Vaga();
+                    $area = new CandidatoAreaInteresse();
+                    $areaInteresse = $area->buscarAreasInteresse();
                     $vagas = $v->buscaDados($_SESSION['Id_empresa']);
                     //$vagasjacandidatos = $v->buscaCandidatosVaga($id_vaga);
+                    $this->data['areaInteresse'] = $areaInteresse;
                     $this->data['vagas'] = $vagas;
                     if(isset($_POST['detalhesTemp'])){
                         $detalhe = $_POST['detalhesTemp'];

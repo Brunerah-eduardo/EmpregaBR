@@ -8,6 +8,10 @@ class CandidatoAreaInteresse{
                 . "WHERE aic.FK_Id_candidato= ?", array($id_user));
     }
     
+    public function buscarAreasInteresse(){
+        return $result = Db::queryAll("select * from areainteresse ai");
+    }
+    
     public function inserirDados($params = array()){
         return $result = Db::queryCount("INSERT INTO areainteressecandidato (FK_Id_candidato, FK_Id_areainteresse) VALUES (?,?)", $params);
     }
