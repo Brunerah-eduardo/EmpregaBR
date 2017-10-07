@@ -7,21 +7,23 @@
             $parsedUrl = $this->parseUrl($params[0]);
             if(empty($parsedUrl[0]))
                 $this->redirect('login');
-                
-            $controllerClass = $this->dashesToCamel(array_shift($parsedUrl)).'Controller';
+            $controllerClass = $this->dashesToCamel($parsedUrl[0]).'Controller';
 
-            if(file_exists("controllers/$controllerClass.php"))
+            if(file_exists("controllers/$controllerClass.php")){
                 $this->controller = new $controllerClass;
-            else
+            }else{
                 if(LogReg::isLogged()){
                     if($_SESSION['level'] == 1){
                         $this->redirect("cliente/error");
-                    }else{
+                    }else if($_SESSION['level'] == 2){
                         $this->redirect("empresa/error");
+                    }else if($_SESSION['level'] == 3){
+                        $this->redirect("analista/error");
                     }
                 }else{
                     $this->redirect('error');
                 }
+            }
 
             $this->controller->process($parsedUrl);
 
