@@ -1,0 +1,53 @@
+<?php
+    echo "Etapa 01 - Processo Seletivo: ".$id_processoseletivo."<br><br>";?>
+    <button class="newVaga" value="novo">Avaliar Candidatos</button><br><br>
+    <div class="resposta"></div>
+    <?php foreach($candidatosetapa as $c){
+        echo "ID Candidato: ".$c['Id_candidato']."<br>";
+        echo $c['nome_completo']."      -       ".$c['cidade']."<br>";
+        echo $c['data_nascimento']."    -   ".$c['email']."<br><br>";?>
+        
+        <?php $id = $c['Id_candidato'] ?>
+        <form method="POST" class="processoavaliacao container" id="<?php echo $id ?>">
+            <input type="hidden" name="id_processoseletivo" value="<?php echo $id_processoseletivo ?>">
+            <input type="text" name="avaliacao" required placeholder="Avaliação: ">
+            <input type="text" name="comentario" required placeholder="Comentário: ">
+        </form>
+    <?php }?>
+    
+    
+    <?php if (isset($candidatosetapa)) {
+        $value = true;
+        $tamanho = sizeof($candidatosetapa);
+        $contador = 1;
+        $form = "";?>
+    
+        <table class='candidatosID'>
+            <?php foreach($candidatosetapa as $ce){
+                if($value == true){ ?>
+                    <form method='POST' name='selecionado'>
+                        <input type="hidden" name="id_processoseletivo" value="<?php echo $id_processoseletivo ?>">
+                    <?php $value = false; 
+                } ?>
+                <tr><td>
+                <input class="avancacandidato" type="checkbox" name="avancacandidato1[]" value="<?php echo $ce['Id_candidato'] ?>">Selecionado
+                
+                
+                
+                <?php if($contador == $tamanho){ ?>
+                    <tr><td>
+                    
+                    </td></tr>
+                <?php }else{ ?>
+                    </td></tr>
+                <?php } 
+                    $contador++;
+                } ?>
+                </form>
+                </table>
+    <button class='submitValues' value="etapa01">Avançar</button>
+                <button class="selecionarTodos">Selecionar Todos Candidatos</button>
+        <?php echo $form;
+        }?>
+    
+   

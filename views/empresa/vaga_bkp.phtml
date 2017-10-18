@@ -1,0 +1,65 @@
+<table class="table table-striped table-bordered">
+    </br></br></br>
+    <tr>
+        <td align="center">ID Vaga</td>
+        <td align="center">Cargo</td>
+        <td align="center">Qtde Vagas</td>
+        <td align="center">Ações</td>
+    </tr>
+    
+    <?php if ($vagas) {
+        foreach ($vagas as $v){?>
+            <tr>
+                <td align="center"><?= $v['ID_vaga']?></td>
+                <td><?= $v['cargo'] ?></td>
+                <td align="center"><?= $v['qtdeVagas'] ?></td>
+                <td align="center">
+                    <button class="candidatar btn btn-primary" value="<?= $v['ID_vaga'] ?>">
+                        Editar
+                    </button>
+                    <button class="candidatar btn btn-primary" value="<?= $v['ID_vaga'] ?>">
+                        Remover
+                    </button>
+                    
+                </td>
+            </tr>
+            <?php
+        }
+    }else {
+        echo "<tr>" . "No momento não há vagas Disponíveis para estas Areas de Interesse" . "</tr>";
+    }?>
+</table>
+
+<form method="POST" id="vaga">
+    <h1>Cadastro de Vaga</h1>
+    <select name="areaInteresse">
+        <option value="1">Ciências Exatas</option>
+        <option value="2">Química</option>
+        <option value="3">Física</option>
+        <option value="4">Tecnologia da Informação</option>
+    </select>
+    <input type="text" name="cargo" required placeholder="Cargo... ">
+    <input type="text" name="descricao" required placeholder="Descrição... "><br>
+    <input type="text" name="qtdeVagas" required placeholder="Quantidade de Vagas... ">
+    <select name="horarioTrabalho">
+        <option value="Horário Comercial - 08 ás 17h">Horário Comercial - 08 ás 17h</option>
+        <option value="Horário Comercial - 09 ás 18h">Horário Comercial - 09 ás 18h</option>
+        <option value="A Definir">A Definir</option>
+    </select>
+    <select name="tipoContrato">
+        <option value="Estagio">Estágio</option>
+        <option value="Contrato">Contrato de 1 ano de duração</option>
+        <option value="Contrato_CLT">Contrato CLT</option>
+    </select>
+    <input type="text" name="salario" required placeholder="Salário... ">
+    <input type="text" name="detalhes" required placeholder="Detalhes da Vaga... ">
+    <input type="submit" value="Salvar">
+    
+</form>
+
+
+
+
+
+
+<br><br>

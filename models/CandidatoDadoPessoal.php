@@ -7,7 +7,28 @@ class CandidatoDadoPessoal{
     }
     
     public function atualizarDados($params = array()){
-        return $result = Db::queryCount(" UPDATE candidato SET nome=?, cpf=?, email=? WHERE FK_Id_user=?", $params);
+        return $result = Db::queryCount("UPDATE candidato SET
+                nome_completo=?,
+                cpf=?, 
+                rg=?, 
+                orgao_emissor=?, 
+                data_expedicao=?,
+                sexo=?, 
+                data_nascimento=?, 
+                estado_civil=?, 
+                email=?, 
+                nome_pai=?, 
+                nome_mae=?, 
+                endereco=?, 
+                bairro=?, 
+                regiao=?, 
+                cidade=?, 
+                cep=?, 
+                estado=?, 
+                telefone=?, 
+                celular=?
+                WHERE FK_Id_user=?", $params);
+                
         
     }
     

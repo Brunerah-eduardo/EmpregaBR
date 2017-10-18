@@ -1,0 +1,45 @@
+<?php echo "Vaga Nº: ".$id."<br>";
+    echo "Vaga: ".$vaga['cargo']."<br>";
+    echo "Área de Interesse: ".$vaga['areainteresse']."<br>";
+    echo "Descrição da Vaga: ".$vaga['descricao']."<br>";
+    echo "Quantidade de Vagas Disponíveis: ".$vaga['qtdeVagas']."<br>";
+    echo "Horário de Trabalho: ".$vaga['horarioTrabalho']."<br>";
+    echo "Tipo de Contrato: ".$vaga['tipoContrato']."<br>";
+    echo "Salário: ".$vaga['salario']."<br>";
+    echo "Vaga Cadastrada em: ".date('d/m/Y', strtotime($vaga['dataCadastro']))."<br>";
+    echo "Status da Vaga: ";
+                if ($vaga['statusVaga']=='N')echo "Não Iniciado";
+                else if ($vaga['statusVaga']=='A')echo "Aberta";
+                else if ($vaga['statusVaga']=='EA')echo "Em Andamento";
+                else if ($vaga['statusVaga']=='P')echo "Pausado";
+            
+?>    
+
+<form method="POST">
+    <button align=center name="candidatar" class="newVaga">Candidatar-Me</button><br><br>
+</form>
+<!--<form method="POST" class="container">
+    <h1>Vaga</h1>
+    <input type="text" name="id" readonly placeholder="<?php /*echo $id ?>">
+    <input type="text" name="areaInteresse" required placeholder="<?php echo $vaga['FK_Id_areainteresse'] ?>">
+    <input type="text" name="cargo" required placeholder="<?php echo $vaga['cargo'] ?>">
+    <input type="textarea" name="descricao" required placeholder="<?php echo $vaga['descricao'] ?>">
+    <input type="text" name="qtdeVagas" required placeholder="<?php echo $vaga['qtdeVagas'] ?>">
+    <input type="text" name="horarioTrabalho" placeholder="<?php echo $vaga['horarioTrabalho'] ?>">
+    <input type="text" name="tipoContrato" placeholder="<?php echo $vaga['tipoContrato'] ?>">
+    <input type="text" name="salario" placeholder="<?php echo $vaga['salario'] ?>">
+    <input type="text" name="salario" placeholder="<?php echo $vaga['detalhesVaga'] ?>">
+    <input type="text" name="salario" placeholder="<?php echo $vaga['dataCadastro'] ?>">
+    <input type="text" name="detalhes" placeholder="<?php echo $vaga['statusVaga'] ?>">
+    <input class="submit" name="botao" type="submit" value="Salvar Alterações">
+    <?php if(!empty($error)){?>
+        <div class="error"><?php echo $error ?></div>
+    <?php } ?>
+</form> 
+
+
+<form method="POST">
+    <button name="cancelarVaga" value="<?php $id */?>">Cancelar Vaga</button>
+</form>        
+        
+-->

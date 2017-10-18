@@ -10,7 +10,7 @@
             if($_SESSION['level']==1){
                 $eventos = $e->buscaDados();
                 $this->data['eventos'] = $eventos;
-                $this->view = 'cliente/agenda';
+                $this->view = 'cliente/calendario';
             }else{
                 $eventos = $e->buscaDados();
                 $this->data['eventos'] = $eventos;

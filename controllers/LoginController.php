@@ -2,6 +2,8 @@
     class LoginController extends Controller{
 
         public function process($params){
+            
+            
             if(LogReg::isLogged()){
                 if($_SESSION['level'] == 1){
                     $this->redirect("cliente");

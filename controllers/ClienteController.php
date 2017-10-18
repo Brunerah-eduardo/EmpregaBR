@@ -3,11 +3,14 @@
         protected $controller;
 
         public function process($params){
+            $data = new LogReg();
+            $this->data['data'] = $data->getDate();
             $parsedUrl = $this->parseUrl($params[1]);
             if(empty($parsedUrl[0]))
                 $this->redirect('cliente/dashboard');
             
-                
+            
+            
             $controllerClass = $this->dashesToCamel($parsedUrl[0]).'Controller';
 
             if(file_exists("controllers/$controllerClass.php"))
