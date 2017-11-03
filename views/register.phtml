@@ -1,10 +1,20 @@
-<form method="POST" id="form-register" class="login-container">
-    <h1>Pagina Register</h1>
-    <a href="login">Tela de Login</a>
-    <input type="text" name="login" required placeholder="Login: ">
-    <input type="password" name="senha" required placeholder="Senha: "><br>
-    <input type="radio" name="level" value="1" checked> Cliente<br>
-    <input type="radio" name="level" value="2"> Empresa<br>
-    <input type="submit" value="Registrar">
-    <div class="error"><?= $error ?></div>
-</form>
+<div>
+    <div class="container-flex">
+        <form method="POST" id="form-register" class="login">
+            <h1>Pagina Register</h1>
+            <input type="text" name="login" required placeholder="Login: ">
+            <input type="password" name="senha" required placeholder="Senha: ">
+            <div>
+                <input type="radio" name="level" value="1" checked> Cliente
+                <input type="radio" name="level" value="2"> Empresa
+            </div>
+            <input type="submit" value="Registrar">
+            <?php if(!empty($error)){?>
+                <div class="error"><?php echo $error ?></div>
+            <?php } ?>
+        </form>
+        <div>
+            <a href="login">Tela de Login</a>
+        </div>
+    </div>
+</div>

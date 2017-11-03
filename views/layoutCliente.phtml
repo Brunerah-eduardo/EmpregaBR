@@ -1,41 +1,25 @@
-<!DOCTYPE html>
-
-<html>
-
-    <head>
-        <title>EmpregaBR</title>
-        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-        <script type="text/javascript" src="../assets/js/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="../assets/js/js.js"></script>
-    </head>
-
-    <body>
-        <header>
-            <a href="cliente">Software EmpregaBR</a><br>
-            <a><?php echo $_SESSION['username']?></a>
-        
-            <nav id="menu">
-                <ul style="display: flex; margin:0 auto">
-                    <li><a href="cliente">Home</a></li>
-                    <li><a href="cliente/curriculo">Curriculo</a></li>
-                    <li><a href="cliente/vaga">Vagas</a></li>
-                    <li><a href="cliente/processoseletivo">Processos Seletivos</a></li>
-                    <li><a href="cliente/historico">Histórico</a></li>
-                    <li><a href="cliente/conta">Conta</a></li>
+<div class="top-container">
+    <header>
+        <nav id="menu">
+            <ul>
+                <li><a href="cliente">Software EmpregaBR</a></li>
+                <li><a href="cliente">Home</a></li>
+                <li><a href="cliente/curriculo">Curriculo</a></li>
+                <li><a href="cliente/vaga">Vagas</a></li>
+                <li><a href="cliente/processoseletivo">Processos Seletivos</a></li>
+                <li><a href="cliente/historico">Histórico</a></li>
+                <li><a href="cliente/conta">Conta</a></li>
                 <li><a href="logout">Logout</a></li>
-                </ul>
-            </nav>
-            
-        </header>
+            </ul>
+        </nav>
         
-        <article>
-            <?php $this->controller->renderView(); ?>
-        </article>
+    </header>
 
-        <footer>
-            <h5 align="center">Último acesso ao Sistema realizado em: <?php echo date('d/m/Y H:i', strtotime($data)) ?></h5><br>
-            <p>EmpregaBR - Recrutamento e Seleção</p>
-        </footer>
-    </body>
-</html>
+    <article>
+        <?php $this->controller->renderView(); ?>
+    </article>
+</div>
+<footer class="bottom-container">
+    <p>EmpregaBR - Recrutamento e Seleção</p>
+    <h5>Último acesso ao Sistema realizado em: <?php echo date('d/m/Y H:i', strtotime($data)) ?></h5>
+</footer>

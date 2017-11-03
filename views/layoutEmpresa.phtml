@@ -1,40 +1,25 @@
-<!DOCTYPE html>
-
-<html>
-
-    <head>
-        <title>EmpregaBR</title>
-        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-        <script type="text/javascript" src="../assets/js/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="../assets/js/js.js"></script>
-    </head>
-
-    <body>
-        <header id="menu_empresa">
-            <a href="cliente">Software EmpregaBR</a><br>
-            
-            <nav id="menu">
-                <ul style="display: flex; margin:0 auto">
-                    <li><a href="empresa">Home</a></li>
-                    <li><a href="empresa/empresa-candidato">Candidatos</a></li>
-                    <li><a href="empresa/vaga">Vagas</a></li>
-                    <li><a href="empresa/processo-seletivo">Processos Seletivos</a></li>
-                    <li><a href="empresa/usuario">Usuários</a></li>
-                    <li><a href="empresa/conta">Conta</a></li>
+<div class="top-container">
+    <header id="menu_empresa">
+        <nav id="menu">
+            <ul>
+                <li><a href="empresa">Software EmpregaBR</a></li>
+                <li><a href="empresa">Home</a></li>
+                <li><a href="empresa/empresa-candidato">Candidatos</a></li>
+                <li><a href="empresa/vaga">Vagas</a></li>
+                <li><a href="empresa/processo-seletivo">Processos Seletivos</a></li>
+                <li><a href="empresa/usuario">Usuários</a></li>
+                <li><a href="empresa/conta">Conta</a></li>
                 <li><a href="logout">Logout</a></li>
-                </ul>
-            </nav>
-            
-        </header>
+            </ul>
+        </nav>
         
-        <article>
-            <?php $this->controller->renderView(); ?>
-        </article>
-
-        <footer>
-            <p>EmpregaBR - Recrutamento e Seleção</p>
-        </footer>
-    </body>
-</html>
+    </header>
+    
+    <article>
+        <?php $this->controller->renderView(); ?>
+    </article>
+</div>
+<footer class="bottom-container">
+    <p>EmpregaBR - Recrutamento e Seleção</p>
+</footer>
 
