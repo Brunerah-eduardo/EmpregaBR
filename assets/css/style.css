@@ -61,6 +61,7 @@ body > div{
     color: white;
     background-color: rgb(0,0,120);
     cursor: pointer;
+    box-shadow: 2px 2px 5px #888888;
 }
 
 .login input[type='text'], .login input[type='password']{
@@ -114,7 +115,7 @@ body > div{
 .top-container header{
     flex: 1;
     background-color: white;
-    box-shadow: 1px -1px 10px #888888;
+    box-shadow: 0px 0px 10px #888888;
 }
 
 .top-container header #menu ul{
@@ -144,8 +145,9 @@ body > div{
 }
 
 .top-container article{
+    overflow-y: scroll;
     flex: 8;
-    padding: 60px 40px;
+    padding: 50px 40px;
 }
 
 .bottom-container{
@@ -166,4 +168,129 @@ body > div{
     color: rgb(0,0,120);
     font-weight: 700;
     font-size: 0.8em;
+}
+
+/*DashboardArea*/
+
+.title{
+    text-align: center;
+    color: rgb(0,0,120);
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgb(0,0,120);
+}
+
+#feedback h2, #indique h2{
+    margin-bottom: 10px;
+}
+
+#feedback, #indique{
+    color: rgb(0,0,120);
+    margin-top: 40px;
+    background-color: white;
+    box-shadow: 5px 5px 5px #888888;
+    padding: 10px;
+    text-align: center;
+}
+
+#feedback div, #indique div{
+    margin: 20px 0;
+}
+
+#feedback form button, #indique form button, .indicacao button{
+    padding: 10px;
+    color: white;
+    background-color: rgb(0,0,120);
+    border: none;
+    box-shadow: 2px 2px 5px #888888;
+    cursor: pointer;
+}
+
+.indicacao{
+    display: flex;
+    margin: 50px 0;
+}
+
+.indicacao button{
+    margin: 0 auto;
+}
+
+/*ContaArea*/
+
+.inform{
+    margin-top: 15px;
+    text-align: center;
+    color: rgb(0,0,120);
+}
+
+.inform p{
+    padding: 5px;
+}
+
+.center-content{
+    margin: 10px;
+    display: flex;
+}
+
+.center-content button{
+    margin: auto;
+}
+
+.newVaga{
+    padding: 10px;
+    color: white;
+    background-color: rgb(0,0,120);
+    border: none;
+    box-shadow: 2px 2px 5px #888888;
+    cursor: pointer;
+}
+
+.container-hidden{
+    display: none;
+}
+
+.dados form{
+    color: rgb(0,0,120);
+    margin-top: 40px;
+    background-color: white;
+    box-shadow: 5px 5px 5px #888888;
+    padding: 10px;
+}
+
+.dados div{
+    display: flex;
+    flex-direction: column;
+}
+
+.dados div div{
+    display: flex;
+    flex-direction: row;
+}
+
+.dados div div span{
+    margin: 10px 5px 10px 0;
+}
+
+.dados div div input{
+    flex: 9;
+}
+
+.dados form input[type='text'], .dados form input[type='password']{
+    border: none;
+    border-bottom: 1px solid rgb(0,0,120);
+    transition: border-width 0.1s ease-in-out;
+}
+
+.dados form input[type='text']:hover, .dados form input[type='password']:hover{
+    border-bottom: 3px solid rgb(0,0,120);
+}
+
+.dados .center-content button{
+    padding: 10px;
+    color: white;
+    background-color: rgb(0,0,120);
+    border: none;
+    box-shadow: 2px 2px 5px #888888;
+    cursor: pointer;
 }

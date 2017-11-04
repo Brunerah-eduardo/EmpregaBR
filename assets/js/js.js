@@ -3,7 +3,7 @@ $(document).ready(function(){
     $(".newVaga").click(function(){
         var id = $(this).attr('id');
         console.log(id);
-        $(".container").each(function(){
+        $(".container-hidden").each(function(){
             var idcon = $(this).attr('id');
             if(idcon === id){
                 $(this).show();

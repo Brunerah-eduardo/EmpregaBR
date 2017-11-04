@@ -1,20 +1,17 @@
-
-<?php
-    echo "<h3>".$_SESSION['username'].", Bem Vindo ao EmpregaBR</h3>";
-    echo "<br>Id User: ".$_SESSION['Id_user'];
-    echo "<br>Level User: ".$_SESSION['level'];
-    echo "<br>Id Candidato: ".$_SESSION['Id_candidato']."<br><br>";
-    
-?>
+<h2 class="title">Dashboard Cliente: <?php echo $_SESSION['username'].", Bem Vindo ao EmpregaBR" ?></h2>
 
 <div id="feedback">
-    <h2 align=center>Histórico de Feedbacks</h2>
-    <button>Área dos Feedbacks</button><br>
+    <h2>Histórico de Feedbacks</h2>
+    <form method="POST">
+        <button name="+processosseletivos">Area dos Feedbacks</button>
+    </form>
 </div>
 <br>
 <div id="indique">
     <h2 align=center>Indique a um Amigo</h2>
-    <button>Indique a um Amigo</button>
+    <form method="POST">
+        <button name="+processosseletivos">Indique um amigo</button>
+    </form>
 </div>
 <br>
 

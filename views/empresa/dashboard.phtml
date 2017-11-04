@@ -1,26 +1,36 @@
-<h2>Dashboard Empresa</h2>
+<h2 class="title">Dashboard Empresa</h2>
 
 <div id="feedback">
     <h2>Processos Seletivos Pendentes</h2>
-    <?php
-        foreach($processosSeletivosAbertos as $psa){
-            echo "Processo Seletivo Nº: ".$psa['ID_processoseletivo']." - Status :".$psa['status']." - Vagas Restantes: ".$psa['vagasrestantes'];
-        }
-    ?>
+    <div>
+        <?php
+            foreach($processosSeletivosAbertos as $psa){
+                echo "<div>";
+                echo "<p>Processo Seletivo Nº: ".$psa['ID_processoseletivo']." - Status :".$psa['status']." - Vagas Restantes: ".$psa['vagasrestantes']."</p>";
+                echo "</div>";
+            }
+        ?>
+    </div>
     <form method="POST">
         <button name="+processosseletivos">Veja Mais...</button>
     </form>
 </div>
 <div id="indique">
     <h2>Vagas Abertas Recentemente</h2>
-    <?php
-        foreach($vagasAbertas as $va){
-            echo "Vaga Nº: ".$va['ID_vaga']." - Cargo: ".$va['cargo'];
-            echo "Qtde. Vagas: ".$va['qtdeVagas']." - Data de Cadastro: ".$va['dataCadastro'];
-        }
-    ?>
+    <div>
+        <?php
+            foreach($vagasAbertas as $va){
+                echo "<div>";
+                echo "<p>Vaga Nº: ".$va['ID_vaga']." - Cargo: ".$va['cargo']. "</p>";
+                echo "<p>Qtde. Vagas: ".$va['qtdeVagas']." - Data de Cadastro: ".$va['dataCadastro']. "</p>";
+                echo "</div>";
+            }
+        ?>
+    </div>
     <form method="POST">
         <button name="+vagas">Veja Mais...</button>
     </form>
     </div>
-<button>Indique nossa Ferramenta para um Parceiro</button>
+<div class="indicacao">
+    <button>Indique nossa Ferramenta para um Parceiro</button>
+</div>

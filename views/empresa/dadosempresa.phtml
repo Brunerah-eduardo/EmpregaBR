@@ -1,44 +1,52 @@
-<?php
-    echo "ID Empresa: ".$dadosconta['ID_empresa']."<br>";
-    echo "Razão Social: ".$dadosconta['razaoSocial']."<br>";
-    echo "Nome Fantasia: ".$dadosconta['nomeFantasia']."<br>";
-    echo "CNPJ: ".$dadosconta['cnpj']."<br>";
-    echo "Inscrição Estadual: ".$dadosconta['ie']."<br>";
-    echo "Ramo de Atuação da Empresa: ".$dadosconta['ramoEmpresa']."<br>";
-    echo "Endereço: ".$dadosconta['endereco']."<br>";
-    echo "Bairro: ".$dadosconta['bairro']."<br>";
-    echo "Cidade: ".$dadosconta['cidade']." - Estado: ".$dadosconta['estado']."<br>";
-    echo "Telefone Comercial: ".$dadosconta['telefonecomercial']."<br>";
-    echo "E-mail: ".$dadosconta['email']."<br>";
-    echo "Empresa Ativa: ".$dadosconta['confirmado']."<br>";
-    echo "ID Usuário: ".$dadosconta['FK_Id_user']."<br>";
-?>
+<h1 class="title">Dados da Empresa</h1>
 
-<button align=center class="newVaga" id="alterarSenhaAcesso">Alterar Senha de Acesso</button><br><br></a>
-<form align=center method="POST" id="alterarSenhaAcesso" class="container">
-    Razão Social: <input type="text" name="nome" required placeholder="<?php echo $dadosconta['razaoSocial'] ?>" disabled>
-    <br>Nome Fantasia: <input type="text" name="nome" required placeholder="<?php echo $dadosconta['nomeFantasia'] ?>"disabled>
-    <br>E-mail: <input type="text" name="email" required placeholder="<?php echo $dadosconta['email'] ?>"disabled>
-    <br>CNPJ: <input type="text" name="cpf" required placeholder="<?php echo $dadosconta['cnpj'] ?>"disabled>
-    <br>Nova Senha:<input type="password" name="password" required placeholder="Insira sua nova Senha... ">
-    <br>Confirme a Senha:<input type="password" name="password" required placeholder="Confirme sua nova Senha... ">
-    <br><br><button>Salvar Nova Senha</button>
-    <br>
-    <br>
-    <br>
-</form>
+<div class="inform">
+    <p><b>Razão Social:</b> <?php echo $dadosconta['razaoSocial'] ?></p>
+    <p><b>Nome Fantasia:</b> <?php echo $dadosconta['nomeFantasia'] ?></p>
+    <p><b>CNPJ:</b> <?php echo $dadosconta['cnpj'] ?></p>
+    <p><b>Inscrição Estadual:</b> <?php echo $dadosconta['ie'] ?></p>
+    <p><b>Ramo de Atuação da Empresa:</b> <?php echo $dadosconta['ramoEmpresa'] ?></p>
+    <p><b>Endereço:</b> <?php echo $dadosconta['endereco'] ?></p>
+    <p><b>Bairro:</b> <?php echo $dadosconta['bairro'] ?></p>
+    <p><b>Cidade:</b> <?php echo $dadosconta['cidade'] ?> - <b>Estado:</b> <?php echo $dadosconta['estado'] ?></p>
+    <p><b>Telefone Comercial:</b> <?php echo $dadosconta['telefonecomercial'] ?></p>
+    <p><b>E-mail:</b> <?php echo $dadosconta['email'] ?></p>
+</div>
 
+<div class="center-content">
+    <button class="newVaga" id="alterarSenhaAcesso">Alterar Senha de Acesso</button></a>
+</div>
+<div class="dados">
+    <form method="POST" id="alterarSenhaAcesso" class="container-hidden">
+        <div>
+            <input type="hidden" name="nome" required placeholder="<?php echo $dadosconta['razaoSocial'] ?>" disabled>
+            <input type="hidden" name="nome" required placeholder="<?php echo $dadosconta['nomeFantasia'] ?>"disabled>
+            <input type="hidden" name="email" required placeholder="<?php echo $dadosconta['email'] ?>"disabled>
+            <input type="hidden" name="cpf" required placeholder="<?php echo $dadosconta['cnpj'] ?>"disabled>
+            <div><span>Nova Senha:</span><input type="password" name="password" required placeholder="Insira sua nova Senha... "></div>
+            <div><span>Confirme a Senha:</span><input type="password" name="password" required placeholder="Confirme sua nova Senha... "></div>
+        </div>
+        <div class="center-content">
+            <button>Salvar Nova Senha</button>
+        </div>
+    </form>
+</div>
 
-<button align=center class="newVaga" id="alterarDadosEmpresa">Alterar Dados da Empresa</button><br><br></a>
-<form align=center method="POST" id="alterarDadosEmpresa" class="container">
-    Razão Social: <input type="text" name="nome" required placeholder="<?php echo $dadosconta['razaoSocial'] ?>">
-    <br>Nome Fantasia: <input type="text" name="nome" required placeholder="<?php echo $dadosconta['nomeFantasia'] ?>">
-    <br>E-mail: <input type="text" name="email" required placeholder="<?php echo $dadosconta['email'] ?>">
-    <br>CNPJ: <input type="text" name="cpf" required placeholder="<?php echo $dadosconta['cnpj'] ?>">
-    <br>Nova Senha:<input type="password" name="password" required placeholder="Insira sua nova Senha... ">
-    <br>Confirme a Senha:<input type="password" name="password" required placeholder="Confirme sua nova Senha... ">
-    <br><br><button>Salvar Alterações</button>
-    <br>
-    <br>
-    <br>
-</form>
+<div class="center-content">
+    <button class="newVaga" id="alterarDadosEmpresa">Alterar Dados da Empresa</button></a>
+</div>
+<div class="dados">
+    <form method="POST" id="alterarDadosEmpresa" class="container-hidden">
+        <div>
+            <div><span>Razão Social:</span><input type="text" name="nome" required placeholder="<?php echo $dadosconta['razaoSocial'] ?>"></div>
+            <div><span>Nome Fantasia:</span><input type="text" name="nome" required placeholder="<?php echo $dadosconta['nomeFantasia'] ?>"></div>
+            <div><span>E-mail:</span><input type="text" name="email" required placeholder="<?php echo $dadosconta['email'] ?>"></div>
+            <div><span>CNPJ:</span><input type="text" name="cpf" required placeholder="<?php echo $dadosconta['cnpj'] ?>"></div>
+            <div><span>Nova Senha:</span><input type="password" name="password" required placeholder="Insira sua nova Senha... "></div>
+            <div><span>Confirme a Senha:</span><input type="password" name="password" required placeholder="Confirme sua nova Senha... "></div>
+        </div>
+        <div class="center-content">
+            <button>Salvar Alterações</button>
+        </div>
+    </form>
+</div>
