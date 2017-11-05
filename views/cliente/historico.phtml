@@ -1,13 +1,11 @@
-Página de Históricos de Processos Seletivos<br><br>
+<h1 class="title">Página de Históricos de Processos Seletivos</h1>
 
-<?php 
-    //print_r($historico);
-    foreach($historico as $h){
-        echo $h['vaga']."<br>";
-        echo $h['empresa']."<br>";
-        echo $h['dataCadastro']."<br>";
-        if ($h['descricao'] == 'Candidatado') echo "Me candidatei nessa Vaga...<br><br><br>";
-        
-    }
-?>
-
+<?php
+    foreach($historico as $h){ ?>
+        <div class="inform historico">
+            <p><b>Vaga:</b> <?php echo $h['vaga'] ?></p>
+            <p><b>Empresa:</b> <?php echo $h['empresa'] ?></p>
+            <p><b>Data de Cadastro:</b> <?php echo $h['dataCadastro'] ?></p>
+            <?php if ($h['descricao'] == 'Candidatado') {?><p><b>Descrição: </b>Me candidatei nessa Vaga</p><?php } ?>
+        </div>
+<?php } ?>

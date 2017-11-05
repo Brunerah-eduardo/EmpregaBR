@@ -1,23 +1,25 @@
-<?php echo "Vaga Nº: ".$id."<br>";
-    echo "Vaga: ".$vaga['cargo']."<br>";
-    echo "Área de Interesse: ".$vaga['areainteresse']."<br>";
-    echo "Descrição da Vaga: ".$vaga['descricao']."<br>";
-    echo "Quantidade de Vagas Disponíveis: ".$vaga['qtdeVagas']."<br>";
-    echo "Horário de Trabalho: ".$vaga['horarioTrabalho']."<br>";
-    echo "Tipo de Contrato: ".$vaga['tipoContrato']."<br>";
-    echo "Salário: ".$vaga['salario']."<br>";
-    echo "Vaga Cadastrada em: ".date('d/m/Y', strtotime($vaga['dataCadastro']))."<br>";
-    echo "Status da Vaga: ";
-                if ($vaga['statusVaga']=='N')echo "Não Iniciado";
-                else if ($vaga['statusVaga']=='A')echo "Aberta";
-                else if ($vaga['statusVaga']=='EA')echo "Em Andamento";
-                else if ($vaga['statusVaga']=='P')echo "Pausado";
-            
-?>    
+<h1 class="title">Vaga <?php echo $vaga['cargo'] ?></h1>
+<div class="template">
+    <p><b>Vaga Nº:</b> <?php echo $id ?></p>
+    <p><b>Vaga:</b> <?php echo $vaga['cargo'] ?></p>
+    <p><b>Área de Interesse:</b> <?php echo $vaga['areainteresse'] ?></p>
+    <p><b>Descrição da Vaga:</b> <?php echo $vaga['descricao'] ?></p>
+    <p><b>Quantidade de Vagas Disponíveis:</b> <?php echo $vaga['qtdeVagas'] ?></p>
+    <p><b>Horário de Trabalho:</b> <?php echo $vaga['horarioTrabalho'] ?></p>
+    <p><b>Tipo de Contrato:</b> <?php echo $vaga['tipoContrato'] ?></p>
+    <p><b>Salário:</b> <?php echo $vaga['salario'] ?></p>
+    <p><b>Vaga Cadastrada em:</b> <?php echo $vaga['dataCadastro'] ?></p>
+    <p><b>Status da Vaga:</b> <?php if 
+        ($vaga['statusVaga']=='N')echo "Não Iniciado";
+        else if ($vaga['statusVaga']=='A')echo "Aberta";
+        else if ($vaga['statusVaga']=='EA')echo "Em Andamento";
+        else if ($vaga['statusVaga']=='P')echo "Pausado"; ?></p>
+    
+    <form method="POST">
+        <button name="candidatar" class="newVaga">Candidatar-Me</button><br><br>
+    </form>    
+</div>
 
-<form method="POST">
-    <button align=center name="candidatar" class="newVaga">Candidatar-Me</button><br><br>
-</form>
 <!--<form method="POST" class="container">
     <h1>Vaga</h1>
     <input type="text" name="id" readonly placeholder="<?php /*echo $id ?>">

@@ -294,3 +294,90 @@ body > div{
     box-shadow: 2px 2px 5px #888888;
     cursor: pointer;
 }
+
+/*HistoricoArea*/
+
+.historico{
+    margin-top: 40px;
+    background-color: white;
+    box-shadow: 5px 5px 5px #888888;
+    padding: 10px;
+}
+
+/*VagaArea*/
+
+.filtro{
+    color: rgb(0,0,120);
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.filtro strong{
+    text-align: center;
+}
+
+.filtro strong, .filtro select, .filtro input, .filtro button{
+    margin: 5px auto;
+    width: 20%;
+    border: none;
+    padding: 10px;
+}
+
+.filtro button{
+    width: 10%;
+    padding: 10px;
+    color: white;
+    background-color: rgb(0,0,120); 
+    box-shadow: 2px 2px 5px #888888;
+    cursor: pointer;
+}
+
+.overflow-x{
+    overflow-x: scroll;
+    display: flex;
+}
+
+.overflow-x table{
+    color: rgb(0,0,120);
+    background-color: white;
+    box-shadow: 5px 5px 5px #888888;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+.overflow-x table td, .overflow-x table th{
+    padding: 10px;
+}
+
+.overflow-x table tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+.overflow-x table th{
+    background-color: rgb(0,0,120);
+    color: white;
+}
+
+.overflow-x table td form button{
+    padding: 10px;
+    color: white;
+    background-color: rgb(0,0,120);
+    border: none;
+    box-shadow: 2px 2px 5px #888888;
+    cursor: pointer;
+}
+
+.template{
+    color: rgb(0,0,120);
+    margin-top: 40px;
+    background-color: white;
+    box-shadow: 5px 5px 5px #888888;
+    padding: 10px;
+    padding-bottom: 0;
+    text-align: center;
+}
+
+.template form{
+    margin: 15px 0 0 0;
+}

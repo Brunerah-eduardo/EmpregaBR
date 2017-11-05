@@ -1,16 +1,13 @@
-Página de Processos Seletivos Ativos<br><br>
-Teste
+<h1 class="title">Página de Processos Seletivos Ativos</h1>
 
 <?php
-//print_r($processosativos);
-
-foreach ($processosativos as $pa){
-    echo "Processo Seletivo Nº: ".$pa['ID_processoseletivo']."<br>";
-    echo "Vaga Nº: ".$pa['FK_Id_vaga']."<br>";
-    echo "Cargo: ".$pa['cargo']."<br>";
-    echo "Status do Processo Seletivo: ".$pa['status']."<br>";
-    echo "Vagas Restantes: ".$pa['vagasrestantes']."<br>";
-    echo "Empresa: ".$pa['FK_Id_empresa']."<br><br>";
-}
-?>
-
+    foreach($processosativos as $pa){ ?>
+        <div class="inform historico">
+            <p><b>Processo Seletivo Nº: </b> <?php echo $pa['ID_processoseletivo'] ?></p>
+            <p><b>Vaga Nº: </b> <?php echo $pa['FK_Id_vaga'] ?></p>
+            <p><b>Cargo: </b> <?php echo $pa['cargo'] ?></p>
+            <p><b>Status do Processo Seletivo:</b> <?php echo $pa['status'] ?></p>
+            <p><b>Vagas Restantes:</b> <?php echo $pa['vagasrestantes'] ?></p>
+            <p><b>Empresa: </b> <?php echo $pa['FK_Id_empresa'] ?></p>
+        </div>
+<?php } ?>
