@@ -122,14 +122,15 @@
                     </a>
                 </td>
             </tr>
-        </table>
-    </div>
     <div class="center-content" style="margin-top:0;">
         <button class="newVaga" id="areaInteresse" value="<?php echo $dadoPessoal['Id_candidato'] ?>">Adicionar Área Interesse</button>
     </div>
             <?php
-        }
-    }else { ?>
+        } ?>
+        
+    </table>
+</div>
+    <?php }else { ?>
         <p>No momento não há vagas Disponíveis para estas Areas de Interesse</p>;
         <div class="center-content">
             <button class="newVaga" id="areaInteresse" value="<?php echo $dadoPessoal['Id_candidato'] ?>">Adicionar Área Interesse</button>

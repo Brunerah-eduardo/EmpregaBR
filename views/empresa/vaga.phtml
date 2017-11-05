@@ -1,5 +1,4 @@
-<br><h2 align="center">Vagas Cadastradas</h2><br>
-<button class="newVaga" value="novo" id="novavaga">Nova Vaga</button><br><br>
+<h1 class="title">Vagas</h1>
 
 <!--<strong><a>Filtrar por: </a></strong><br>
 <a>Cargo:<input type="text" name="filtro" required placeholder="Digite aqui sua busca... "></a>
@@ -20,63 +19,72 @@
 </select>
 <button>Pesquisar</button>-->
 
-<table align="center">
-    <tr align="center">
-        <td>ID Vaga</td>
-        <td>Area Interesse</td>
-        <td>Cargo</td>
-        <td>Qtde. Vagas</td>
-        <td>Salário</td>
-        <td>Data Cadastro</td>
-        <td>Detalhes da Vaga</td>
-        <td>Situação</td>
-        <td>Ações</td>
-    </tr>
-    <?php foreach($vagas as $v){ ?>
-        <tr align="center">
-            <td><?php echo $v['ID_vaga'] ?></td>
-            <td><?php echo $v['areainteresse'] ?></td>
-            <td><?php echo $v['cargo'] ?></td>
-            <td><?php echo $v['qtdeVagas'] ?></td>
-            <td><?php echo $v['salario'] ?></td>
-            <td><?php echo $v['dataCadastro'] ?></td>
-            <td><?php echo $v['detalhesVaga'] ?></td>
-            <td><?php 
-                if ($v['statusVaga']=='N')echo "Não Iniciado";
-                else if ($v['statusVaga']=='A')echo "Aberta";
-                else if ($v['statusVaga']=='EA')echo "Em Andamento";
-                else if ($v['statusVaga']=='P')echo "Pausado";
-            ?></td>
-            <td>
-                <form method="POST">
-                    <button name="detalhesTemp" value="<?php echo $v['ID_vaga'] ?>">Detalhes</button>
-                </form>
-            </td>
+<?php if(!empty($vagas)){ ?>
+<div class="overflow-x">
+    <table class="tabela">
+        <tr>
+            <th>ID Vaga</th>
+            <th>Area Interesse</th>
+            <th>Cargo</th>
+            <th>Qtde. Vagas</th>
+            <th>Salário</th>
+            <th>Data Cadastro</th>
+            <th>Detalhes da Vaga</th>
+            <th>Situação</th>
+            <th>Ações</th>
         </tr>
-    <?php } ?>
-</table>
-<br><br><br>
-
-<form method="POST" class="container" id="novavaga">
-    <h1>Vaga</h1>
-    <input hidden type="text" name="id" readonly placeholder="id: ">
-    <select name="areaInteresse">
-        <?php foreach ($areaInteresse as $ai){ ?>
-                    <option value="<?php echo $ai['ID_areainteresse']?>"> <?php echo $ai['descricao']?></option>
+        <?php foreach($vagas as $v){ ?>
+            <tr align="center">
+                <td><?php echo $v['ID_vaga'] ?></td>
+                <td><?php echo $v['areainteresse'] ?></td>
+                <td><?php echo $v['cargo'] ?></td>
+                <td><?php echo $v['qtdeVagas'] ?></td>
+                <td><?php echo $v['salario'] ?></td>
+                <td><?php echo $v['dataCadastro'] ?></td>
+                <td><?php echo $v['detalhesVaga'] ?></td>
+                <td><?php 
+                    if ($v['statusVaga']=='N')echo "Não Iniciado";
+                    else if ($v['statusVaga']=='A')echo "Aberta";
+                    else if ($v['statusVaga']=='EA')echo "Em Andamento";
+                    else if ($v['statusVaga']=='P')echo "Pausado";
+                ?></td>
+                <td>
+                    <form method="POST">
+                        <button name="detalhesTemp" value="<?php echo $v['ID_vaga'] ?>">Detalhes</button>
+                    </form>
+                </td>
+            </tr>
         <?php } ?>
-    </select>
-    <input type="text" name="cargo" required placeholder="cargo: ">
-    <input type="text" name="descricao" required placeholder="descricao: ">
-    <input type="text" name="qtdeVagas" required placeholder="qtdeVagas: ">
-    <input type="text" name="horarioTrabalho" placeholder="horarioTrabalho: ">
-    <input type="text" name="tipoContrato" placeholder="tipoContrato: ">
-    <input type="text" name="salario" placeholder="salario: ">
-    <input type="text" name="detalhes" placeholder="detalhesVaga: ">
-    <!--<input type="text" name="id_vaga">
-    <input type="text" name="id_vaga">-->
-    <input class="submit" name="botao" type="submit" value="Adicionar">
-    <?php if(!empty($error)){?>
-        <div class="error"><?php echo $error ?></div>
+    </table>
+</div>
     <?php } ?>
-    <br><br><br>
-</form> 
+
+<div class="center-content">
+    <button class="newVaga" value="novo" id="novavaga">Nova Vaga</button>
+</div>
+
+<div class="dados">
+    <form method="POST" class="container-hidden" id="novavaga">
+        <div>
+            <input type="hidden" name="id" readonly placeholder="id: ">
+            <div><span>Area de Interesse</span><select name="areaInteresse">
+                <?php foreach ($areaInteresse as $ai){ ?>
+                            <option value="<?php echo $ai['ID_areainteresse']?>"> <?php echo $ai['descricao']?></option>
+                <?php } ?>
+            </select></div>
+            <div><span>Cargo</span><input type="text" name="cargo" required placeholder="cargo: "></div>
+            <div><span>Descrição</span><input type="text" name="descricao" required placeholder="descricao: "></div>
+            <div><span>Quantidade de Vagas</span><input type="text" name="qtdeVagas" required placeholder="qtdeVagas: "></div>
+            <div><span>Horario de Trabalho</span><input type="text" name="horarioTrabalho" placeholder="horarioTrabalho: "></div>
+            <div><span>Tipo de Contrato</span><input type="text" name="tipoContrato" placeholder="tipoContrato: "></div>
+            <div><span>Salario</span><input type="text" name="salario" placeholder="salario: "></div>
+            <div><span>Detalhes</span><input type="text" name="detalhes" placeholder="detalhesVaga: "></div>
+        </div>
+        <div class="center-content">
+            <input class="submit" name="botao" type="submit" value="Adicionar">
+        </div>
+        <?php if(!empty($error)){?>
+            <div class="error"><?php echo $error ?></div>
+        <?php } ?>
+    </form> 
+</div>

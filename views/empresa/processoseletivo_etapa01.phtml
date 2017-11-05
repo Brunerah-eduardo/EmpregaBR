@@ -1,6 +1,7 @@
-<?php
-    echo "Etapa 01 - Processo Seletivo: ".$id_processoseletivo."<br><br>";?>
-    <button class="newVaga" value="novo">Avaliar Candidatos</button><br><br>
+<h1 class="title">Etapa 01 - Processo Seletivo: <?php echo $id_processoseletivo ?></h1>
+    <div class="center-content">
+        <button class="newVaga" value="novo">Avaliar Candidatos</button>
+    </div>
     <div class="resposta"></div>
     <?php foreach($candidatosetapa as $c){
         echo "ID Candidato: ".$c['Id_candidato']."<br>";

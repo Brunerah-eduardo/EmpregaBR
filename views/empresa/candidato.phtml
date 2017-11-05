@@ -1,41 +1,45 @@
-<br><h2 align="center">Candidatos Cadastrados no EmpregaBR</h2>
+<h1 class="title">Candidatos</h1>
 
-<strong><a>Filtrar por: </a></strong>
-<select name="opcaofiltro">
-        <option value="1">Nome</option>
-        <option value="2">Localidade</option>
-        <option value="3">Data de Cadastro</option>
-</select>
-<input type="text" name="filtro" required placeholder="Digite aqui sua busca... ">
-<button>Pesquisar</button>
+<div class="dados">
+    <form>
+        <div>
+            <div><span>Filtrar por:</span>
+            <select name="opcaofiltro">
+                    <option value="1">Nome</option>
+                    <option value="2">Localidade</option>
+                    <option value="3">Data de Cadastro</option>
+            </select></div>
+            <div><span>Pesquisa:</span><input type="text" name="filtro" required placeholder="Digite aqui sua busca... "></div>
+        </div>
+        <div class="center-content">
+            <button>Pesquisar</button>
+        </div>
+    </form>
+</div>
 
-<table class="table table-striped table-bordered">
-    </br></br></br>
-    <tr>
-        <td align="center">ID Candidato</td>
-        <td align="center">Nome</td>
-        <td align="center">CPF</td>
-        <td align="center">E-mail</td>
-        <td align="center">Data Nascimento</td>
-        <td align="center">Cidade</td>
-        <td align="center">Estado</td>
-        <td align="center">Ações</td>
-    </tr>
-    
-    <?php if (!empty($candidatos)) {
-        $value = true;
-        $tamanho = sizeof($candidatos);
-        $contador = 1;
-        $form = "";
+<?php if (!empty($candidatos)) { ?>
+<div class="overflow-x">
+    <table class="tabela">
+        <tr>
+            <th>ID Candidato</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>E-mail</th>
+            <th>Data Nascimento</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th>Ações</th>
+        </tr>
+    <?php
         foreach ($candidatos as $c){?>
             <tr>
-                <td align="center"><?= $c['Id_candidato']?></td>
+                <td><?= $c['Id_candidato']?></td>
                 <td><?= $c['nome_completo'] ?></td>
-                <td align="center"><?= $c['cpf'] ?></td>
-                <td align="center"><?= $c['email'] ?></td>
-                <td align="center"><?= $c['data_nascimento'] ?></td>
-                <td align="center"><?= $c['cidade'] ?></td>
-                <td align="center"><?= $c['estado'] ?></td>
+                <td><?= $c['cpf'] ?></td>
+                <td><?= $c['email'] ?></td>
+                <td><?= $c['data_nascimento'] ?></td>
+                <td><?= $c['cidade'] ?></td>
+                <td><?= $c['estado'] ?></td>
                 <td>
                     <form method="POST">
                         <button name="detalhesTemp" value="<?php echo $c['Id_candidato'] ?>">Visualizar Curriculo em PDF</button>
@@ -44,32 +48,9 @@
             </tr>
             <?php
         } ?>
-        <!--<table class='candidatosID'>
-        
-        <?php /*foreach($candidatos as $c){
-            
-            if($value == true){ ?>
-                <form method='POST' name='selecionado'>
-                
-            <?php $value = false; } ?>
-            <tr><td>
-            <input type="checkbox" name="candidato[]" value="<?php echo $c['Id_candidato'] ?>">Selecionado
-            <?php if($contador == $tamanho){ ?>
-                <tr><td>
-                <input type='submit' value='Avançar'>
-                </td></tr>
-            <?php }else{ ?>
-                </td></tr>
-            <?php }
-            $contador++;
-        } ?>
-        </form>
-        </table>
-            <button class="selecionarTodos">selecionarTodos</button>-->
-        
-    <?php echo $form; */}else {
-        echo "<tr>" . "No momento não há vagas Disponíveis para estas Areas de Interesse" . "</tr>";
-    }?>	
-</table>
 
-<br><br>
+    </table>
+</div>
+    <?php }else { ?>
+        <p>No momento não há candidatos no sistema</p>
+    <?php }?>	

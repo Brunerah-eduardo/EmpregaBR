@@ -229,7 +229,7 @@ body > div{
 }
 
 .center-content{
-    margin: 10px;
+    padding: 10px;
     display: flex;
 }
 
@@ -347,6 +347,10 @@ body > div{
     box-shadow: 5px 5px 5px #888888;
     margin: 20px auto;
     border-collapse: collapse;
+}
+
+.overflow-x table .disabled{
+    background-color: rgb(100,100,120);
 }
 
 .overflow-x table td, .overflow-x table th{

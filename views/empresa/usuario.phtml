@@ -1,31 +1,45 @@
+<h1 class="title">Analistas - Empresa: <?php echo $_SESSION['Id_empresa'] ?></h1>
 <?php
-    echo "ID Empresa: ".$_SESSION['Id_empresa']."<br>";
-    foreach($analistas as $a){
-        echo $a['nome']."       -       ".$a['email']?>
-        <a>Situação:
-            <select name="situacao">
-                <option value="1">Ativo</option>
-                <option value="2">Inativo</option>
-            </select>
-        </a>
-        <a>Nível Acesso:
-            <select name="nivel">
-                <option value="1">Usuário</option>
-                <option value="2">Empreendedor</option>
-                <option value="3">Administrador</option>
-            </select>
-        </a><br>
-    <?php }
-?>
-<br><br>
-<button class="newVaga" id="inserirAnalista" value="novo">Novo Usuário</button><br><br>
-<form method="POST" id="inserirAnalista" class="container">
-    <h1>Registrar Analista</h1>
-    <input type="text" name="nome_user" required placeholder="Nome Completo: ">
-    <input type="text" name="email_user" required placeholder="E-mail: ">
-    <input type="text" name="login" required placeholder="Login: ">
-    <input type="password" name="senha" required placeholder="Senha: "><br>
-    <input type="submit" value="Registrar">
-    <div class="error"><?= $error ?></div>
-</form>
+    if(!empty($analistas)){
+        foreach($analistas as $a){ ?>
+            <div class="overflow-x">
+                <table class="tabela">
+                    <tr>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Ações</th>
+                    </tr>
+                    <tr>
+                        <td><?= $a['nome']?></td>
+                        <td><?= $a['email'] ?></td>
+                        <td>
+                            <button class="newVaga" id="inserirAnalista">Editar Analista</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="center-content">
+                <button class="newVaga" id="inserirAnalista" value="novo">Novo Usuário</button><br><br>
+            </div>
+        <?php }
+    }else { ?>
+        <p>No momento não há analistas cadastrados</p>
+        <div class="center-content">
+            <button class="newVaga" id="inserirAnalista">Novo analista</button>
+        </div>
+    <?php } ?>
 
+<div class="dados">
+    <form method="POST" id="inserirAnalista" class="container-hidden">
+        <div>
+            <div><span>Nome:</span><input type="text" name="nome_user" required placeholder="Nome Completo: "></div>
+            <div><span>Email:</span><input type="text" name="email_user" required placeholder="E-mail: "></div>
+            <div><span>Login:</span> <input type="text" name="login" required placeholder="Login: "></div>
+            <div><span>Senha:</span><input type="password" name="senha" required placeholder="Senha: "></div>
+        </div>
+        <div class="center-content">
+            <input type="submit" value="Registrar">
+        </div>
+        <div class="error"><?= $error ?>
+    </form>
+</div>
